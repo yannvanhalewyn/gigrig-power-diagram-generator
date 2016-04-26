@@ -9,7 +9,9 @@
 
   :clean-targets ^{:protect false} ["resources/public/js" "target"]
 
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.2"]]
+  :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.2.1"]
+                                  [org.clojure/tools.nrepl "0.2.11"]
+                                  [figwheel-sidecar "0.5.2"]]
                    :source-paths ["src" "env/dev"]}}
 
   :plugins [[lein-cljsbuild "1.1.3"]
