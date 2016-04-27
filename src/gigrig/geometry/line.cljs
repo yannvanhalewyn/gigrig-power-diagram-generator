@@ -17,16 +17,13 @@
   "Returns an array of lines that would connect one box to multiple
   subboxes in a 'trident' fashion"
   [root children]
-  (let [left-box (apply min-key :x children)
-        right-box (apply max-key :x children)
+  (let [offsets (map #(:x (box/center %)) (conj children root))
         y-height (+ (box/bottom root) (/ (- (:y (first children)) (box/bottom root)) 2))
-        left-x (:x (box/center left-box))
-        right-x (:x (box/center right-box))]
+        left-x (apply min offsets)
+        right-x (apply max offsets)]
     (concat
      [;; The horizontal line from leftest to rightest child 
-      (if (= left-x right-x)
-        (line {:x left-x :y y-height} {:x (:x (box/center root)) :y y-height})
-        (line {:x left-x :y y-height} {:x right-x :y y-height}))
+      (line {:x left-x :y y-height} {:x right-x :y y-height})
       ;; The vertical line from root 
       (line {:x (:x (box/center root)) :y y-height} {:x (:x (box/center root)) :y (box/bottom root)})]
      ;; The vertical lines for all children
