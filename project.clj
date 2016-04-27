@@ -18,9 +18,9 @@
             [lein-figwheel "0.5.2"]]
 
   :cljsbuild {:builds [{:id "dev"
-                        :source-paths ["src"]
-                        :figwheel true
-                        :compiler {:main gigrig.core
+                        :source-paths ["src" "env/dev"]
+                        :figwheel {:on-jsload "dev.user/render"}
+                        :compiler {:main dev.user
                                    :optimizations :none
                                    :asset-path "js/out"
                                    :output-to "resources/public/js/core.js"
