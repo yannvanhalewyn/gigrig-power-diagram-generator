@@ -26,17 +26,30 @@
   (boxed-text-data (merge props {:text "Generator" :background "Orange" :size 13})))
 
 (defn distributor [props]
-  (boxed-text-data (merge props {:text "Distributor" :background "Green" :size 9})))
+  (boxed-text-data (merge props {:text "Distributor" :background "Green" :size 7})))
+
+(defn center [box]
+  {:x (+ (:x box) (/ (:width box) 2))
+   :y (+ (:y box) (/ (:height box) 2))})
+
+(defn line [p1 p2]
+  {:x1 (:x p1) :y1 (:y p1)
+   :x2 (:x p2) :y2 (:y p2)})
+
+(defn- connect [box1 box2]
+  (line (center box1) (center box2)))
 
 (defn component [props]
-  [:div
-   [:h1 "DIAGRAM"]
-   [:svg {:view-box "0 0 200 100"
-          :width "800"
-          :height "400"
-          :style {:border "1px solid black"}}
-    [boxed-text (generator {:x 0 :y 0})]
-    [:g {:stroke "black"
-         :stroke-width 1}
-     [:line {:x1 23 :y1 18 :x2 23 :y2 38}]]
-    [boxed-text (distributor {:x 10 :y 38})]]])
+  (let [generator-dims (generator {:x 0 :y 0})
+        distributor-dims (distributor {:x 20 :y 30})]
+    [:div
+     [:h1 "DIAGRAM"]
+     [:svg {:view-box "0 0 200 100"
+            :width "800"
+            :height "400"
+            :style {:border "1px solid black"}}
+      [:g {:stroke "black"
+           :stroke-width 1}
+       [:line (connect generator-dims distributor-dims)]]
+      [boxed-text generator-dims]
+      [boxed-text distributor-dims]]]))
