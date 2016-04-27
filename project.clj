@@ -26,5 +26,12 @@
                                    :optimizations :none
                                    :asset-path "js/out"
                                    :output-to "resources/public/js/core.js"
-                                   :output-dir "resources/public/js/out"}}]})
+                                   :output-dir "resources/public/js/out"}}
+                       {:id "min"
+                        :source-paths ["src" "env/min"]
+                        :compiler {:main gigrig.main
+                                   :optimizations :advanced
+                                   :output-to "resources/public/js/core.js"
+                                   :closure-defines {"goog.DEBUG" false}}}]})
+
 

@@ -67,4 +67,4 @@
          [:line (connect distributor-dims pd)]))
       [boxed-text generator-dims]
       [boxed-text distributor-dims]
-      (map boxed-text pedal-dims)]]))
+      (map (fn [p] ^{:key (gensym)} [boxed-text p]) pedal-dims)]]))
