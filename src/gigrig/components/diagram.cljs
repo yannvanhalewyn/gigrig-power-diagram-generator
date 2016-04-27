@@ -1,30 +1,57 @@
 (ns gigrig.components.diagram
   (:require [gigrig.components.boxes :as boxes]
             [gigrig.geometry.line :as line]
+            [gigrig.geometry.box :as box]
             [clojure.string :as str]))
 
-(defn- align [pedals]
-  (map-indexed
-   #(boxes/pedal (str/join (take 7 %2)) {:x (* %1 30) :y 70})
-   pedals))
+(defn- trunc [s n] (str/join (take n s)))
+
+(defn- align
+  "Builds an array of box data's in an aligned manner"
+  [children x y]
+  (reduce
+   (fn [out child]
+     (let [x (+ 1 (if (empty? out) x (box/right (last out))))]
+       (conj out
+             (merge child
+                    (case (:type child)
+                      :pedal (boxes/pedal (trunc (:name child) 13) {:x x :y y})
+                      :distributor (boxes/distributor {:x x :y y}))))))
+   []
+   children))
+
+(defn lines [lines]
+  [:g {:stroke "black"
+       :stroke-linecap "round"}
+   (for [l lines]
+     ^{:key (gensym)}
+     [:line l])])
+
+(declare tree)
+(defn child [props]
+  (case (:type props)
+    :pedal (boxes/boxed-text (boxes/pedal (trunc (:name props) 13) props)) 
+    :distributor [tree {:x (:x props) :y (:y props)} (:children props)]))
+
+(defn tree [{:keys [x y]} children]
+  (let [root (boxes/distributor {:x x :y y})
+        children (align children x (+ y 25))]
+    (.log js/console children)
+    [:g
+     [lines (line/connect-trident root children)]
+     [boxes/boxed-text root]
+     (map
+      (fn [c] ^{:key (gensym)} [child c])
+      children)]))
 
 (defn component [props]
-  (let [pedals '("Whammy" "DD-20 Giga Delay" "RE-20 Space Echo" "Earthquaker Bit Commander")
-        pedal-dims (align pedals)
-        generator-dims (boxes/generator {:x 0 :y 0})
-        distributor-dims (boxes/distributor {:x 20 :y 30})]
+  (let [generator (boxes/generator {:x 0 :y 0})]
     [:div
      [:h1 "DIAGRAM"]
      [:svg {:view-box "0 0 200 100"
             :width "800"
             :height "400"
             :style {:border "1px solid black"}}
-      (into
-       [:g {:stroke "black"
-            :stroke-width 1}]
-       (for [pd (conj pedal-dims generator-dims)]
-         ^{:key (str (:x pd) (:y pd))}
-         [:line (line/connect distributor-dims pd)]))
-      [boxes/boxed-text generator-dims]
-      [boxes/boxed-text distributor-dims]
-      (map (fn [p] ^{:key (gensym)} [boxes/boxed-text p]) pedal-dims)]]))
+      [boxes/boxed-text generator]
+      [tree {:x 10 :y 25}
+       (:children props)]]]))

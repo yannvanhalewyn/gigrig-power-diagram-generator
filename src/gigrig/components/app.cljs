@@ -12,4 +12,20 @@
      ^{:key id}
      [pedal-search/component (assoc field :id id)])
    [:button {:on-click #(dispatch! a/add-pedal-button-clicked)} "+ Add pedal"]
-   [diagram/component]])
+   [diagram/component {:type :distributor
+                       :children [
+                                  {:type :pedal
+                                   :name "Fuzz Factory"}
+                                  {:type :pedal
+                                   :name "Whammy"}
+                                  {:type :pedal
+                                   :name "Quartermaster"}
+                                  {:type :pedal
+                                   :name "DD-20 Giga-Delay"}
+                                  {:type :pedal
+                                   :name "TS-9"}
+                                  {:type :distributor
+                                   :children [{:type :pedal
+                                               :name "A Pedal"}
+                                              {:type :pedal
+                                               :name "Earthquaker Bit Commander"}]}]}]])

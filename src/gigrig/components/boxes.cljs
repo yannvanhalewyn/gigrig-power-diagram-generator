@@ -22,7 +22,6 @@
 (defn distributor [props]
   (boxed-text-data (merge props {:text "Distributor" :background  "#BEA488":size 5})))
 
-(defn echo [a] (prn a) a)
 (defn pedal [name props]
   (boxed-text-data (merge props {:text name :background "#DCD7B3" :size 3})))
 
