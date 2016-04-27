@@ -17,13 +17,14 @@
             :y (+ y padding size)}}))
 
 (defn generator [props]
-  (boxed-text-data (merge props {:text "Generator" :background "Orange" :size 13})))
+  (boxed-text-data (merge props {:text "Generator" :background "#4E4554" :size 13})))
 
 (defn distributor [props]
-  (boxed-text-data (merge props {:text "Distributor" :background "Green" :size 7})))
+  (boxed-text-data (merge props {:text "Distributor" :background  "#BEA488":size 5})))
 
+(defn echo [a] (prn a) a)
 (defn pedal [name props]
-  (boxed-text-data (merge props {:text name :background "Purple" :size 5})))
+  (boxed-text-data (merge props {:text name :background "#DCD7B3" :size 3})))
 
 (defn boxed-text [{:keys [text x y width height]}]
   [:g
