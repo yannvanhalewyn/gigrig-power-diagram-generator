@@ -9,16 +9,32 @@
            :placeholder "Search for a pedal"
            :on-change #(handle-change (.. % -target -value))}])
 
+(defn suggestion [i props]
+  ^{:key i} [:li
+             [:strong (:model props)]
+             (:brand props)])
+
+(defn dropdown [props]
+  [:ul
+   (map-indexed suggestion (:suggestions props))])
+
+(defn pedal-search [props]
+  [:div
+   [search-field {:handle-change (fn [val] (dispatch! a/searchfield-key-pressed val))}]
+   [dropdown (select-keys props [:suggestions])]])
+
 (defn main-component
   [state]
   [:div#app
    [:h1 "Power Supply Diagram generator!"]
-   [search-field {:handle-change (fn [val] (dispatch! a/searchfield-key-pressed val))}]])
+   [pedal-search (get-in @state [:search-fields 0])]])
 
 (defn main-reducer [state action]
   (case (:type action)
     :init {:search-fields []}
-    :key-pressed (assoc-in state [:search-fields 0 :query] (:value action))
+    :key-pressed (->  state
+                      (assoc-in [:search-fields 0 :query] (:value action))
+                      (assoc-in [:search-fields 0 :suggestions] (:suggestions action)))
     state))
 
 (defn start []

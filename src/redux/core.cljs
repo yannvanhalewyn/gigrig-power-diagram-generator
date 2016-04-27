@@ -21,7 +21,7 @@
   [state transform]
   (go-loop []
     (let [{:keys [f args]} (<! DISPATCH_QUEUE)]
-      (swap! state transform (f state args))
+      (swap! state transform (apply f state args))
       (recur))))
 
 (defn register
