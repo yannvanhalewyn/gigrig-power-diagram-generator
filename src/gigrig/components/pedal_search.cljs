@@ -25,6 +25,6 @@
       [:div
        [search-field {:on-focus #(do (reset! dropdown-visible true) nil)
                       :on-blur #(do (reset! dropdown-visible false) nil)
-                      :handle-change (fn [val] (dispatch! a/searchfield-key-pressed val))}]
+                      :handle-change (fn [val] (dispatch! a/searchfield-key-pressed (:id props) val))}]
        (if @dropdown-visible
          [dropdown (select-keys props [:suggestions])])])))
