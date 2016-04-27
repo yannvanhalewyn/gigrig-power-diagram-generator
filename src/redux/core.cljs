@@ -10,10 +10,22 @@
   (put! DISPATCH_QUEUE {:f f :args args})
   nil)
 
-(defn register
-  [state reducer]
+(defn- apply-middleware
+  "Applies an array of middleware to "
+  [reducer middleware]
+  (reduce #(%2 %1) (cons reducer middleware)))
+
+(defn- register-to-dispatch-queue
+  "Registers an atom and a transform function to execute messages put
+  on dispatch queue"
+  [state transform]
   (go-loop []
     (let [{:keys [f args]} (<! DISPATCH_QUEUE)]
-      (swap! state reducer (f state args))
-      (prn @state)
+      (swap! state transform (f state args))
       (recur))))
+
+(defn register
+  "Registers an atom, a reducer and middleware functions to the redux
+  dispatch process"
+  [state reducer middleware]
+  (register-to-dispatch-queue state (apply-middleware reducer middleware)))
