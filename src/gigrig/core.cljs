@@ -6,8 +6,9 @@
 
 (defn main-reducer [state action]
   (case (:type action)
-    :init {:search-fields [{:query ""} {:query ""}]}
-    :add-search-field (update state :search-fields conj {:query ""})
+    :init {:search-fields {(gensym) {:query ""}}}
+    :add-search-field (assoc-in state [:search-fields (gensym)] {:query ""})
+    :remove-search-field (update state :search-fields dissoc (:id action))
     :key-pressed (->  state
                       (assoc-in [:search-fields (:id action) :query] (:value action))
                       (assoc-in [:search-fields (:id action) :suggestions] (:suggestions action)))

@@ -26,5 +26,6 @@
        [search-field {:on-focus #(do (reset! dropdown-visible true) nil)
                       :on-blur #(do (reset! dropdown-visible false) nil)
                       :handle-change (fn [val] (dispatch! a/searchfield-key-pressed (:id props) val))}]
+       [:button {:on-click #(dispatch! a/remove-pedal-button-clicked (:id props))} "X"]
        (if @dropdown-visible
          [dropdown (select-keys props [:suggestions])])])))
