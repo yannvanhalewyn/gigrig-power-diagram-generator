@@ -1,5 +1,7 @@
 (ns gigrig.core
-  (:require [reagent.core :as reagent]))
+  (:require [gigrig.actions :as a]
+            [redux.core :as redux :refer [dispatch!]]
+            [reagent.core :as reagent]))
 
 (defonce data
   [
@@ -17,11 +19,19 @@
   [state]
   [:div#app
    [:h1 "Power Supply Diagram generator!"]
-   [search-field {:handle-change (fn [val] (dispatch! #(js/alert "ok") val))}]])
+   [search-field {:handle-change (fn [val] (dispatch! a/searchfield-key-pressed val))}]])
+
+(defn main-reducer [state action]
+  (case (:type action)
+    :init {:search-fields []}
+    :key-pressed (assoc-in state [:search-fields 0 :query] (:value action))
+    state))
 
 (defn start []
   (let [element (.getElementById js/document "app")
         state (reagent/atom {})
         render #(reagent/render [main-component state] element)]
+    (redux/register state main-reducer)
+    (swap! state main-reducer {:type :init})
     (render)
     render))

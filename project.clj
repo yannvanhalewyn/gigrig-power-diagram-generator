@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.8.40"]
+                 [org.clojure/core.async "0.2.374"]
                  [reagent "0.5.1"]]
 
   :clean-targets ^{:protect false} ["resources/public/js" "target"]
