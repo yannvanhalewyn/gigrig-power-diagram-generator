@@ -1,23 +1,32 @@
 (ns gigrig.components.diagram)
 
-(defn boxed-text [{:keys [text size background x y]}]
+(defn boxed-text-data
+  "Returns the dimensions and data required to render a boxed text element"
+  [{:keys [text size background x y]}]
   (let [padding 2
-        height (* 1.35 size)
-        width (* 0.6 (count text) size)
-        box-width (+ (* 2 padding) width)
-        box-height (+ (* 2 padding) height)
-        text-x (+ x padding)
-        text-y (+ y size padding)]
-    [:g
-     [:rect {:x x :y y :width box-width :height box-height :fill background}]
-     [:text {:x text-x :y text-y :font-family "monospace" :font-size size}
-      text]]))
+        inner-width (* 0.6 (count text) size)
+        inner-height (* 1.35 size)]
+    {:x x
+     :y y
+     :width (+ (* 2 padding) inner-width)
+     :height (+ (* 2 padding) inner-height)
+     :text {:value text
+            :size size
+            :background background
+            :x (+ x padding)
+            :y (+ y padding size)}}))
 
-(defn generator [{:keys [x y]}]
-  [boxed-text {:x x :y y :text "Generator" :size 13 :background "orange"}])
+(defn boxed-text [{:keys [text x y width height]}]
+  [:g
+   [:rect {:x x :y y :width width :height height :fill (:background text)}]
+   [:text {:x (:x text) :y (:y text) :font-family "monospace" :font-size (:size text)}
+    (:value text)]])
 
-(defn distributor [{:keys [x y]}]
-  [boxed-text {:x x :y y :text "Distributor" :size 9 :background "green"}])
+(defn generator [props]
+  (boxed-text-data (merge props {:text "Generator" :background "Orange" :size 13})))
+
+(defn distributor [props]
+  (boxed-text-data (merge props {:text "Distributor" :background "Green" :size 9})))
 
 (defn component [props]
   [:div
@@ -26,8 +35,8 @@
           :width "800"
           :height "400"
           :style {:border "1px solid black"}}
-    [generator {:x 0 :y 0}]
+    [boxed-text (generator {:x 0 :y 0})]
     [:g {:stroke "black"
          :stroke-width 1}
      [:line {:x1 23 :y1 18 :x2 23 :y2 38}]]
-    [distributor {:x 10 :y 38}]]])
+    [boxed-text (distributor {:x 10 :y 38})]]])
