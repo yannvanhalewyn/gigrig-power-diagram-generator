@@ -8,6 +8,7 @@
 
 (def ROOT-OFFSET 10)
 (def CHILDREN-OFFSET 25)
+(def CHILD-SPACING 2)
 
 (defn- box [child x y]
   (case (:type child)
@@ -20,7 +21,7 @@
   [children x y]
   (reduce
    (fn [out child]
-     (let [x (+ 1 (if (empty? out) x (box/right (last out))))]
+     (let [x (+ CHILD-SPACING (if (empty? out) x (box/right (last out))))]
        (conj out (merge child (box child x y)))))
    []
    children))
@@ -57,5 +58,6 @@
             :height "400"
             :style {:border "1px solid black"}}
       [boxes/boxed-text generator]
+      [lines (line/connect-trident generator [(box {:type (:type props)} ROOT-OFFSET CHILDREN-OFFSET)])]
       [tree {:type (:type props) :x ROOT-OFFSET :y CHILDREN-OFFSET}
        (:children props)]]]))
