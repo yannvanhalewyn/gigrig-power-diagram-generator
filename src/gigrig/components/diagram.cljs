@@ -4,7 +4,16 @@
             [gigrig.geometry.box :as box]
             [clojure.string :as str]))
 
-(defn- trunc [s n] (str/join (take n s)))
+(declare tree)
+
+(def ROOT-OFFSET 10)
+(def CHILDREN-OFFSET 25)
+
+(defn- box [child x y]
+  (case (:type child)
+    :pedal (boxes/pedal (:name child) {:x x :y y})
+    :isolator (boxes/isolator {:x x :y y})
+    :distributor (boxes/distributor {:x x :y y})))
 
 (defn- align
   "Builds an array of box data's in an aligned manner"
@@ -12,11 +21,7 @@
   (reduce
    (fn [out child]
      (let [x (+ 1 (if (empty? out) x (box/right (last out))))]
-       (conj out
-             (merge child
-                    (case (:type child)
-                      :pedal (boxes/pedal (trunc (:name child) 13) {:x x :y y})
-                      :distributor (boxes/distributor {:x x :y y}))))))
+       (conj out (merge child (box child x y)))))
    []
    children))
 
@@ -27,16 +32,15 @@
      ^{:key (gensym)}
      [:line l])])
 
-(declare tree)
-(defn child [props]
-  (case (:type props)
-    :pedal (boxes/boxed-text (boxes/pedal (trunc (:name props) 13) props)) 
-    :distributor [tree {:x (:x props) :y (:y props)} (:children props)]))
+(defn child [{:keys [x y type] :as props}]
+  (case type
+    :pedal (boxes/boxed-text props) 
+    :distributor [tree {:x x :y y :type type} (:children props)]
+    :isolator [tree {:x x :y y :type type} (:children props)]))
 
-(defn tree [{:keys [x y]} children]
-  (let [root (boxes/distributor {:x x :y y})
-        children (align children x (+ y 25))]
-    (.log js/console children)
+(defn tree [{:keys [type x y]} children]
+  (let [root (box {:type type} x y)
+        children (align children (- x ROOT-OFFSET) (+ y CHILDREN-OFFSET))]
     [:g
      [lines (line/connect-trident root children)]
      [boxes/boxed-text root]
@@ -48,10 +52,10 @@
   (let [generator (boxes/generator {:x 0 :y 0})]
     [:div
      [:h1 "DIAGRAM"]
-     [:svg {:view-box "0 0 200 100"
+     [:svg {:view-box "0 0 250 125"
             :width "800"
             :height "400"
             :style {:border "1px solid black"}}
       [boxes/boxed-text generator]
-      [tree {:x 10 :y 25}
+      [tree {:type (:type props) :x ROOT-OFFSET :y CHILDREN-OFFSET}
        (:children props)]]]))

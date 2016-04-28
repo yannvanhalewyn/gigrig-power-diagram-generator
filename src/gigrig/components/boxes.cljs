@@ -22,6 +22,9 @@
 (defn distributor [props]
   (boxed-text-data (merge props {:text "Distributor" :background  "#BEA488":size 5})))
 
+(defn isolator [props]
+  (boxed-text-data (merge props {:text "Isolator" :background  "#A1748A" :size 5})))
+
 (defn pedal [name props]
   (boxed-text-data (merge props {:text name :background "#DCD7B3" :size 3})))
 

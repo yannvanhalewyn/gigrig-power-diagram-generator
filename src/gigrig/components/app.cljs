@@ -20,10 +20,14 @@
                                    :name "Whammy"}
                                   {:type :pedal
                                    :name "Quartermaster"}
+                                  {:type :isolator
+                                   :children [{:type :distributor
+                                               :children [{:type :pedal
+                                                           :name "dd2"}]}
+                                              {:type :pedal
+                                               :name "TS-9"}]}
                                   {:type :pedal
                                    :name "DD-20 Giga-Delay"}
-                                  {:type :pedal
-                                   :name "TS-9"}
                                   {:type :distributor
                                    :children [{:type :pedal
                                                :name "A Pedal"}
