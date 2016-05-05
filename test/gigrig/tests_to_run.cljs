@@ -1,3 +1,4 @@
 (ns gigrig.tests-to-run
-  (:require  [gigrig.core-test]))
+  (:require  [gigrig.core-test]
+             [gigrig.powertree-test]))
 
