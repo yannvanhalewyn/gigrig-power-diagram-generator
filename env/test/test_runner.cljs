@@ -40,6 +40,11 @@
          (str/format "%d failures, %d errors" fail error))
     (change-favicon-to-color color)))
 
+(defmethod report [::test/default :fail] [{:keys [message] :as m}]
+  (test/inc-report-counter! :fail)
+  (.log js/console "expected:" (:expected m))
+  (.log js/console "  actual:" (-> (:actual m) last last)))
+
 (.clear js/console)
 
 (test/run-all-tests #"gigrig.*-test")
