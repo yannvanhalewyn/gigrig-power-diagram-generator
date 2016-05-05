@@ -27,6 +27,16 @@
                                    :asset-path "js/out"
                                    :output-to "resources/public/js/core.js"
                                    :output-dir "resources/public/js/out"}}
+
+                       {:id "test"
+                        :source-paths ["src" "test" "env/test"]
+                        :figwheel true
+                        :compiler {:main gigrig.test-runner
+                                   :asset-path "js/test-out"
+                                   :output-to "resources/public/js/test.js"
+                                   :output-dir "resources/public/js/test-out"
+                                   :optimizations :none}}
+
                        {:id "min"
                         :source-paths ["src" "env/min"]
                         :compiler {:main gigrig.main
