@@ -31,6 +31,11 @@
   (.log js/console (apply str "%c" args)
         (str "color: " color "; font-weight: bold")))
 
+(defn info
+  "Logs some data with a title"
+  [title data]
+  (.info js/console (str "%c" title) "color: #4CAF50; font-weight: bold" data))
+
 (defmethod report [::test/default :summary] [{:keys [fail error test pass]}]
   (let [failure (< 0 (+ fail error))
         color (if failure "#d00" "#0d0")]
@@ -42,8 +47,10 @@
 
 (defmethod report [::test/default :fail] [{:keys [message] :as m}]
   (test/inc-report-counter! :fail)
-  (.log js/console "expected:" (:expected m))
-  (.log js/console "  actual:" (-> (:actual m) last last)))
+  (let [expected (second (:expected m))
+        actual (-> (:actual m) last last)]
+    (info "EXPECTED" expected)
+    (info "ACTUAL" actual)))
 
 (.clear js/console)
 
