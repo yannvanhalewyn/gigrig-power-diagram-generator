@@ -3,6 +3,8 @@
             [clojure.zip :as zip]
             [gigrig.powertree :as ptree]))
 
+;; HELPERS
+;; =======
 (defn echo [arg]
   (.log js/console arg)
   arg)
@@ -12,11 +14,20 @@
    :name (str "pedal" n)
    :distributor true})
 
+(defn distributor-pedals [n]
+  (for [i (range 1 (inc n))]
+    (distributor-pedal i)))
+
 (defn isolator-pedal [n]
   {:type :pedal
    :name (str "pedal" n)
    :distributor true
    :isolator true})
+
+(defn isolator-pedals
+  ([n] (isolator-pedals 1 n))
+  ([from to] (for [i (range from (inc to))]
+               (isolator-pedal i))))
 
 (deftest simplify
   (is (= {:power :distributor :name "pedal1"} (ptree/simplify (distributor-pedal 1))))
@@ -53,8 +64,12 @@
 
 (deftest build
   (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:pedal "pedal6"]]
-               (ptree/build (for [n (range 1 7)] (distributor-pedal n)))))
+               (ptree/build (distributor-pedals 6))))
   (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:distributor [:pedal "pedal6"] [:pedal "pedal7"]]]
-               (ptree/build (for [n (range 1 8)] (distributor-pedal n)))))
+               (ptree/build (distributor-pedals 7))))
   (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"] [:isolator [:pedal "pedal3"] [:pedal "pedal4"]]]
-               (ptree/build [(distributor-pedal 1) (distributor-pedal 2) (isolator-pedal 3) (isolator-pedal 4)]))))
+               (ptree/build [(distributor-pedal 1) (distributor-pedal 2) (isolator-pedal 3) (isolator-pedal 4)])))
+  (is (eql-zip [:distributor [:pedal "pedal7"] [:isolator [:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"]] [:isolator [:pedal "pedal5"] [:pedal "pedal6"]]]
+               (ptree/build (cons (distributor-pedal 7) (isolator-pedals 6)))))
+  (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:isolator [:pedal "pedal6"] [:pedal "pedal7"]]]
+               (ptree/build (concat (distributor-pedals 5) (isolator-pedals 6 7))))))
