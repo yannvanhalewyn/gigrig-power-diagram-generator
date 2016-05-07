@@ -24,10 +24,11 @@
 
 ;; Tree
 ;; ====
-(def DISTRIBUTOR_LIMIT 5)
+(def DISTRIBUTOR_LIMIT 6)
+(def ISOLATOR_LIMIT 4)
 
 (defn- insert [loc pedal]
-  (if (<= (count (zip/children loc)) DISTRIBUTOR_LIMIT)
+  (if (< (count (zip/children loc)) DISTRIBUTOR_LIMIT)
     (zip/append-child loc pedal)
     (let [new-node (zip/make-node loc [:distributor] [(last (zip/children loc)) pedal])]
       (-> loc
@@ -45,14 +46,23 @@
               keys
               last)})
 
+(defn- zip-pedal [pedal]
+  [:pedal (:name pedal)])
+
 (defn- group-by-power [pedals]
   (-> (group-by :power pedals)))
 
+(defn- zip-isolators [isolators]
+  (for [pedals (partition-all ISOLATOR_LIMIT isolators)]
+    (cons :isolator (map zip-pedal pedals))))
+
 (defn- iterate-groups [groups]
   (reduce
-   (fn [loc pedal] (insert loc [:pedal (:name pedal)]))
+   (fn [loc pedal] (insert loc pedal))
    (zipper)
-   (:distributor groups)))
+   (concat
+    (map zip-pedal (:distributor groups))
+    (zip-isolators (:isolator groups)))))
 
 ;; Main
 ;; ====

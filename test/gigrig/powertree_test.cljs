@@ -52,7 +52,9 @@
                      (ptree/insert [:isolator [:pedal "pedal2"]]))))))
 
 (deftest build
-  (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"]]
-               (ptree/build [(distributor-pedal 1) (distributor-pedal 2)])))
+  (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:pedal "pedal6"]]
+               (ptree/build (for [n (range 1 7)] (distributor-pedal n)))))
   (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:distributor [:pedal "pedal6"] [:pedal "pedal7"]]]
-               (ptree/build (for [n (range 1 8)] (distributor-pedal n))))))
+               (ptree/build (for [n (range 1 8)] (distributor-pedal n)))))
+  (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"] [:isolator [:pedal "pedal3"] [:pedal "pedal4"]]]
+               (ptree/build [(distributor-pedal 1) (distributor-pedal 2) (isolator-pedal 3) (isolator-pedal 4)]))))
