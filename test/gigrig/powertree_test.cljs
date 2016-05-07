@@ -50,3 +50,9 @@
                  (-> root
                      (ptree/insert [:pedal "pedal1"])
                      (ptree/insert [:isolator [:pedal "pedal2"]]))))))
+
+(deftest build
+  (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"]]
+               (ptree/build [(distributor-pedal 1) (distributor-pedal 2)])))
+  (is (eql-zip [:distributor [:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:distributor [:pedal "pedal6"] [:pedal "pedal7"]]]
+               (ptree/build (for [n (range 1 8)] (distributor-pedal n))))))

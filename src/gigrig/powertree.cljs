@@ -18,7 +18,7 @@
   ([] (zipper :distributor))
   ([root] (zip/zipper branch? children make-node [root])))
 
-(defn location-type [loc]
+(defn- location-type [loc]
   (-> loc zip/node first))
 
 
@@ -26,7 +26,7 @@
 ;; ====
 (def DISTRIBUTOR_LIMIT 5)
 
-(defn insert [loc pedal]
+(defn- insert [loc pedal]
   (if (<= (count (zip/children loc)) DISTRIBUTOR_LIMIT)
     (zip/append-child loc pedal)
     (let [new-node (zip/make-node loc [:distributor] [(last (zip/children loc)) pedal])]
@@ -44,3 +44,21 @@
    :power (-> (filter val pedal)
               keys
               last)})
+
+(defn- group-by-power [pedals]
+  (-> (group-by :power pedals)))
+
+(defn- iterate-groups [groups]
+  (reduce
+   (fn [loc pedal] (insert loc [:pedal (:name pedal)]))
+   (zipper)
+   (:distributor groups)))
+
+;; Main
+;; ====
+(defn build
+  "Builds the powertree for the given pedals"
+  [pedals]
+  (-> (map simplify pedals)
+      group-by-power
+      iterate-groups))
