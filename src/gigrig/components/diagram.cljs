@@ -34,18 +34,18 @@
   [:g {:stroke "black"
        :stroke-linecap "round"}
    (for [l lines]
-     ^{:key (gensym)}
+     ^{:key (line/react-key l)}
      [:line l])])
 
 (defn child [loc]
-  (case (gzip/loc-type loc)
-    :pedal (boxes/boxed-text (gzip/box-meta loc))
-    :distributor [tree loc]))
+  (let [box-data (gzip/box-meta loc)]
+    (case (gzip/loc-type loc)
+      :pedal ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data]
+      :distributor ^{:key (boxes/react-key box-data)} [tree loc])))
 
 (defn tree [loc]
   (let [root (gzip/box-meta loc)
         children (align (zip/down loc) (- (:x root) ROOT-OFFSET) (+ (:y root) CHILDREN-OFFSET))]
-    ^{:key (str (-> root :text :value) (:x root) (:y root))}
     [:g
      [lines (line/connect-trident root (gzip/map-siblings gzip/box-meta (zip/leftmost children)))]
      [boxes/boxed-text root]

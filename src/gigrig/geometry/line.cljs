@@ -31,6 +31,7 @@
        (let [x (:x (box/center box))]
          (line {:x x :y y-height} {:x x :y (:y box)}))))))
 
-(let [box1 {:x 50 :y 50 :width 10 :height 10}
-      box2 {:x 20 :y 50 :width 10 :height 10}]
-  (connect-trident {:x 0 :y 0} [box1 box2]))
+(defn react-key
+  "Returns a unique key for react components"
+  [{:keys [x1 y1 x2 y2]}]
+  (str x1 ":" y1 "-" x2 ":" y2))
