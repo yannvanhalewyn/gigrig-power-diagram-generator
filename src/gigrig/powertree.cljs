@@ -26,7 +26,7 @@
 (defn- simplify
   "returns a hashmap containing the prefered type of the power supply"
   [pedal]
-  {:name (:name pedal)
+  {:name (:model pedal)
    :power (-> (filter val pedal)
               keys
               last)})

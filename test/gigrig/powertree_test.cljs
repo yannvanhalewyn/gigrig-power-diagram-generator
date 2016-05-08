@@ -12,7 +12,8 @@
 
 (defn distributor-pedal [n]
   {:type :pedal
-   :name (str "pedal" n)
+   :brand "X"
+   :model (str "pedal" n)
    :distributor true})
 
 (defn distributor-pedals [n]
@@ -21,7 +22,8 @@
 
 (defn isolator-pedal [n]
   {:type :pedal
-   :name (str "pedal" n)
+   :brand "X"
+   :model (str "pedal" n)
    :distributor true
    :isolator true})
 
