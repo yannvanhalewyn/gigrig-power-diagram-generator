@@ -1,29 +1,6 @@
 (ns gigrig.powertree
-  (:require [clojure.zip :as zip :refer [up down left right]]))
-
-;; Zipper
-;; ======
-(defn- branch?
-  "Returns true if the node is a distributor or isolator"
-  [node]
-  (or
-   (= :distributor (first node))
-   (= :isolator (first node))))
-
-(defn- children
-  "Returns all the children of the node"
-  [node]
-  (rest node))
-
-(defn- make-node
-  "Given the existing node and new children, returns a new node"
-  [node children]
-  (cons (first node) children))
-
-(defn- zipper
-  "Builds our gigrig custom zipper"
-  ([] (zipper :distributor))
-  ([root] (zip/zipper branch? children make-node [root])))
+  (:require [gigrig.zipper :as gzip]
+            [clojure.zip :as zip]))
 
 
 ;; Tree
@@ -82,7 +59,7 @@
 (defn- build-zipper
   "Inserts all entities into a new gigrig zipper"
   [entities]
-  (reduce insert (zipper) entities))
+  (reduce insert (gzip/zipper) entities))
 
 ;; Main
 ;; ====
