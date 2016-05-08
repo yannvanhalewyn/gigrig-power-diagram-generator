@@ -3,6 +3,7 @@
             [gigrig.geometry.line :as line]
             [gigrig.geometry.box :as box]
             [gigrig.zipper :as gzip]
+            [clojure.zip :as zip :refer [children]]
             [clojure.string :as str]))
 
 (defn echo [a] (.log js/console a) a)
@@ -13,21 +14,21 @@
 (def CHILDREN-OFFSET 25)
 (def CHILD-SPACING 2)
 
-(defn- box [node x y]
-  (case (first node)
-    :pedal (boxes/pedal (last node) {:x x :y y})
+(defn- box [loc x y]
+  (case (gzip/loc-type loc)
+    :pedal (boxes/pedal (last (zip/node loc)) {:x x :y y})
     :isolator (boxes/isolator {:x x :y y})
     :distributor (boxes/distributor {:x x :y y})))
 
 (defn- align
   "Builds an array of box data's in an aligned manner"
-  [children x y]
-  (reduce
-   (fn [out child]
-     (let [x (+ CHILD-SPACING (if (empty? out) x (box/right (second (last out)))))]
-       (conj out [(first child) (box child x y)])))
-   []
-   children))
+  [loc x y]
+  (let [node (zip/node loc)
+        x (+ CHILD-SPACING (if (= (zip/leftmost loc) loc) x (box/right (-> loc zip/left zip/node second))))
+        new-loc (zip/replace loc [(gzip/loc-type loc) (box loc x y)])]
+    (if (= (zip/rightmost loc) loc)
+      new-loc
+      (align (zip/right new-loc) x y))))
 
 (defn lines [lines]
   [:g {:stroke "black"
@@ -36,23 +37,25 @@
      ^{:key (gensym)}
      [:line l])])
 
-(defn child [[type {:keys [x y] :as props}]]
-  (case type
-    :pedal (boxes/boxed-text props) 
-    :distributor [tree {:x x :y y :type type} (:children props)]
-    :isolator [tree {:x x :y y :type type} (:children props)]))
+(defn child [loc]
+  (case (gzip/loc-type loc)
+    :pedal (boxes/boxed-text (second (zip/node loc)))))
+
+(defn map-siblings [loc f]
+  (if (= (zip/rightmost loc) loc)
+    [(f loc)]
+    (cons (f loc) (map-siblings (zip/right loc) f))))
 
 (defn tree [{:keys [zipper x y]}]
+  [:g]
   (let [root (box zipper x y)
-        children (align (rest zipper) (- x ROOT-OFFSET) (+ y CHILDREN-OFFSET))]
+        children (align (zip/down zipper) (- x ROOT-OFFSET) (+ y CHILDREN-OFFSET))]
     [:g
-     [lines (line/connect-trident root (map second children))]
+     [lines (line/connect-trident root (map second (zip/children (zip/up children))))]
      [boxes/boxed-text root]
-     (map
-      (fn [c] ^{:key (gensym)} [child c])
-      children)]))
+     (map-siblings (zip/leftmost children) child)]))
 
-(defn component [props]
+(defn component [{:keys [zipper]}]
   (let [generator (boxes/generator {:x 0 :y 0})]
     [:div
      [:h1 "DIAGRAM"]
@@ -61,5 +64,5 @@
             :height "800"
             :style {:border "1px solid black"}}
       [boxes/boxed-text generator]
-      [lines (line/connect-trident generator [(box (:tree props) ROOT-OFFSET CHILDREN-OFFSET)])]
-      [tree {:zipper (:tree props) :x ROOT-OFFSET :y CHILDREN-OFFSET}]]]))
+      [lines (line/connect-trident generator [(box zipper ROOT-OFFSET CHILDREN-OFFSET)])]
+      [tree {:zipper zipper :x ROOT-OFFSET :y CHILDREN-OFFSET}]]]))

@@ -29,6 +29,7 @@
   (boxed-text-data (merge props {:text name :background "#DCD7B3" :size 3})))
 
 (defn boxed-text [{:keys [text x y width height]}]
+  ^{:key (str (:value text) x y)}
   [:g
    [:rect {:x x :y y :width width :height height :fill (:background text)}]
    [:text {:x (:x text) :y (:y text) :font-family "monospace" :font-size (:size text)}

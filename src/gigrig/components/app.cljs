@@ -1,6 +1,7 @@
 (ns gigrig.components.app
   (:require [gigrig.actions :as a]
             [redux.core :refer [dispatch!]]
+            [gigrig.zipper :as gzip]
             [gigrig.components.diagram :as diagram]
             [gigrig.components.pedal-search :as pedal-search]))
 
@@ -26,6 +27,7 @@
                            :name "A Pedal"}
                           {:type :pedal
                            :name "Earthquaker Bit Commander"}]}]})
+
 (defn component
   [state]
   [:div#app
@@ -34,4 +36,4 @@
      ^{:key id}
      [pedal-search/component (assoc field :id id)])
    [:button {:on-click #(dispatch! a/add-pedal-button-clicked)} "+ Add pedal"]
-   [diagram/component {:tree [:distributor [:pedal "pedal1"] [:pedal "pedal2"]]}]])
+   [diagram/component {:zipper (gzip/zipper [:distributor [:pedal "pedal1"] [:pedal "pedal2"]])}]])

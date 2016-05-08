@@ -20,8 +20,8 @@
 
 (defn zipper
   "Builds our gigrig custom zipper"
-  ([] (zipper :distributor))
-  ([root] (zip/zipper branch? children make-node [root])))
+  ([] (zipper [:distributor]))
+  ([data] (zip/zipper branch? children make-node data)))
 
-(defn loc-typ [loc]
-  (zip/node (first loc)))
+(defn loc-type [loc]
+  (-> loc zip/node first))
