@@ -6,8 +6,6 @@
             [clojure.zip :as zip :refer [children]]
             [clojure.string :as str]))
 
-(defn echo [arg] (.log js/console arg) arg)
-
 (declare tree)
 
 (def ROOT-OFFSET 10)
@@ -45,9 +43,9 @@
         pedal-name (-> loc zip/node second second)
         child (boxes/pedal pedal-name {:x (:x root) :y (+ (:y root) ADAPTER-OFFSET)})]
     [:g
+     [lines (line/connect-trident root [child])]
      [boxes/boxed-text root]
-     [boxes/boxed-text child]
-     [lines (line/connect-trident root [child])]]))
+     [boxes/boxed-text child]]))
 
 (defn node
   "Renders the node. If it's a branch, it recursively render a new
@@ -55,7 +53,7 @@
   [loc]
   (let [box-data (gzip/box-meta loc)]
     (if (= :time-lord (gzip/loc-type loc))
-      ^{:key "foo"} [adapter loc]
+      ^{:key (boxes/react-key box-data)} [adapter loc]
       (if (zip/branch? loc)
         ^{:key (boxes/react-key box-data)} [tree loc]
         ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data]))))
@@ -77,11 +75,12 @@
   [{:keys [zipper]}]
   (let [generator (boxes/generator {:x 0 :y 0})]
     [:div
-     [:h1 "DIAGRAM"]
-     [:svg {:view-box "0 0 250 100"
-            :width "1200"
-            :height "800"
-            :style {:border "1px solid black"}}
-      [boxes/boxed-text generator]
-      [lines (line/connect-trident generator [(box zipper ROOT-OFFSET CHILDREN-OFFSET)])]
-      [tree (zip/edit zipper merge (box zipper ROOT-OFFSET CHILDREN-OFFSET))]]]))
+     (when (zip/down zipper)
+       [:h1 "DIAGRAM"]
+       [:svg {:view-box "0 0 250 100"
+              :width "1200"
+              :height "800"
+              :style {:border "1px solid black"}}
+        [boxes/boxed-text generator]
+        [lines (line/connect-trident generator [(box zipper ROOT-OFFSET CHILDREN-OFFSET)])]
+        [tree (zip/edit zipper merge (box zipper ROOT-OFFSET CHILDREN-OFFSET))]])]))
