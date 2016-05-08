@@ -26,10 +26,12 @@
 (defn- simplify
   "returns a hashmap containing the prefered type of the power supply"
   [pedal]
-  (let [base {:name (:model pedal)
-              :power (-> (filter val pedal)
-                         keys
-                         last)}]
+  (let [power (->> (select-keys pedal [:distributor :isolator :adapter])
+                   (filter val)
+                   keys
+                   last)
+        base {:name (:model pedal)
+              :power power}]
     (if (:adapter pedal)
       (assoc base :adapter (:adapter pedal))
       base)))

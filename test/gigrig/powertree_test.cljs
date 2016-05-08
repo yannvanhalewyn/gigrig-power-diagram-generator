@@ -13,7 +13,8 @@
 (defn distributor-pedal [n]
   {:brand "X"
    :model (str "pedal" n)
-   :distributor true})
+   :distributor true
+   :id n})
 
 (defn distributor-pedals [n]
   (for [i (range 1 (inc n))]
@@ -23,7 +24,8 @@
   {:brand "X"
    :model (str "pedal" n)
    :distributor true
-   :isolator true})
+   :isolator true
+   :id n})
 
 (defn isolator-pedals
   ([n] (isolator-pedals 1 n))
