@@ -4,6 +4,28 @@
             [gigrig.components.diagram :as diagram]
             [gigrig.components.pedal-search :as pedal-search]))
 
+(def old-data
+  {:type :distributor
+   :children [
+              {:type :pedal
+               :name "Fuzz Factory"}
+              {:type :pedal
+               :name "Whammy"}
+              {:type :pedal
+               :name "Quartermaster"}
+              {:type :isolator
+               :children [{:type :distributor
+                           :children [{:type :pedal
+                                       :name "dd2"}]}
+                          {:type :pedal
+                           :name "TS-9"}]}
+              {:type :pedal
+               :name "DD-20 Giga-Delay"}
+              {:type :distributor
+               :children [{:type :pedal
+                           :name "A Pedal"}
+                          {:type :pedal
+                           :name "Earthquaker Bit Commander"}]}]})
 (defn component
   [state]
   [:div#app
@@ -12,24 +34,4 @@
      ^{:key id}
      [pedal-search/component (assoc field :id id)])
    [:button {:on-click #(dispatch! a/add-pedal-button-clicked)} "+ Add pedal"]
-   [diagram/component {:type :distributor
-                       :children [
-                                  {:type :pedal
-                                   :name "Fuzz Factory"}
-                                  {:type :pedal
-                                   :name "Whammy"}
-                                  {:type :pedal
-                                   :name "Quartermaster"}
-                                  {:type :isolator
-                                   :children [{:type :distributor
-                                               :children [{:type :pedal
-                                                           :name "dd2"}]}
-                                              {:type :pedal
-                                               :name "TS-9"}]}
-                                  {:type :pedal
-                                   :name "DD-20 Giga-Delay"}
-                                  {:type :distributor
-                                   :children [{:type :pedal
-                                               :name "A Pedal"}
-                                              {:type :pedal
-                                               :name "Earthquaker Bit Commander"}]}]}]])
+   [diagram/component {:tree [:distributor [:pedal "pedal1"] [:pedal "pedal2"]]}]])
