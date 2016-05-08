@@ -39,9 +39,9 @@
 
 (defn child [loc]
   (let [box-data (gzip/box-meta loc)]
-    (case (gzip/loc-type loc)
-      :pedal ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data]
-      :distributor ^{:key (boxes/react-key box-data)} [tree loc])))
+    (if (zip/branch? loc)
+      ^{:key (boxes/react-key box-data)} [tree loc]
+      ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data])))
 
 (defn tree [loc]
   (let [root (gzip/box-meta loc)
