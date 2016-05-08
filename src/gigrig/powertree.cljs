@@ -26,10 +26,13 @@
 (defn- simplify
   "returns a hashmap containing the prefered type of the power supply"
   [pedal]
-  {:name (:model pedal)
-   :power (-> (filter val pedal)
-              keys
-              last)})
+  (let [base {:name (:model pedal)
+              :power (-> (filter val pedal)
+                         keys
+                         last)}]
+    (if (:adapter pedal)
+      (assoc base :adapter (:adapter pedal))
+      base)))
 
 (defn- zip-pedal
   "Returns a version of our pedal coherent with our zip model."
@@ -43,6 +46,11 @@
   (for [pedals (partition-all ISOLATOR_LIMIT isolators)]
     [:isolator (map zip-pedal pedals)]))
 
+(defn- zip-adaptors
+  "Returns all adaptors with their pedals ready to be added to a distributor"
+  [adaptors]
+  (for [pedal adaptors] [(:adapter pedal) [:pedal (:name pedal)]]))
+
 (defn- group-by-power
   "Groups the pedals by whatever power supply they require"
   [pedals]
@@ -54,7 +62,8 @@
   [groups]
   (concat
    (map zip-pedal (:distributor groups))
-   (zip-isolators (:isolator groups))))
+   (zip-isolators (:isolator groups))
+   (zip-adaptors (:adapter groups))))
 
 (defn- build-zipper
   "Inserts all entities into a new gigrig zipper"
