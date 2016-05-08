@@ -5,28 +5,18 @@
             [gigrig.components.diagram :as diagram]
             [gigrig.components.pedal-search :as pedal-search]))
 
-(def old-data
-  {:type :distributor
-   :children [
-              {:type :pedal
-               :name "Fuzz Factory"}
-              {:type :pedal
-               :name "Whammy"}
-              {:type :pedal
-               :name "Quartermaster"}
-              {:type :isolator
-               :children [{:type :distributor
-                           :children [{:type :pedal
-                                       :name "dd2"}]}
-                          {:type :pedal
-                           :name "TS-9"}]}
-              {:type :pedal
-               :name "DD-20 Giga-Delay"}
-              {:type :distributor
-               :children [{:type :pedal
-                           :name "A Pedal"}
-                          {:type :pedal
-                           :name "Earthquaker Bit Commander"}]}]})
+(def test-tree
+  [:distributor
+   [[:pedal "pedal1"]
+    [:pedal "pedal2"]
+    [:pedal "pedal3"]
+    [:pedal "pedal4"]
+    [:pedal "pedal5"]
+    [:distributor [[:pedal "pedal 6"]
+                   [:pedal "pedal 7"]
+                   [:distributor [[:pedal "pedal 8"]]]
+                   [:distributor [[:pedal "pedal 9"]
+                                  [:pedal "pedal 10"]]]]]]])
 
 (defn component
   [state]
@@ -36,4 +26,4 @@
      ^{:key id}
      [pedal-search/component (assoc field :id id)])
    [:button {:on-click #(dispatch! a/add-pedal-button-clicked)} "+ Add pedal"]
-   [diagram/component {:zipper (gzip/zipper [:distributor [[:pedal "pedal1"] [:pedal "pedal2"]]])}]])
+   [diagram/component {:zipper (gzip/zipper test-tree)}]])
