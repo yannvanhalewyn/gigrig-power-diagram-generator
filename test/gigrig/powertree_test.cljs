@@ -39,7 +39,11 @@
    :isolator true
    :adapter :time-lord})
 
+(def tonehammer
+  {:brand "Aguilar" :model "Tonehammer" :distributor false :isolator false :other true :comment "Doubler"})
+
 (deftest simplify
+  (is (= {:power :distributor :name "Tonehammer"} (ptree/simplify tonehammer)))
   (is (= {:power :distributor :name "pedal1"} (ptree/simplify (distributor-pedal 1))))
   (is (= {:power :isolator :name "pedal2"} (ptree/simplify (isolator-pedal 2))))
   (is (= {:power :adapter :name "pedal3" :adapter :time-lord} (ptree/simplify (timelord-pedal 3)))))

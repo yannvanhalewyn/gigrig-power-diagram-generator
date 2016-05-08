@@ -2,7 +2,7 @@
   (:require [gigrig.search :as s]
             [gigrig.data :refer [data]]))
 
-(def indexed-data (map-indexed #(assoc %2 :id %1) (take 50 data)))
+(def indexed-data (map-indexed #(assoc %2 :id %1) data))
 
 (defn searchfield-key-pressed [_ field-id query-value]
   {:type :key-pressed
