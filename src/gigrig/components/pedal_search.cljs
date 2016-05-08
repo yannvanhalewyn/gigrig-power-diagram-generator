@@ -10,14 +10,16 @@
            :on-blur on-blur 
            :on-change #(handle-change (.. % -target -value))}])
 
-(defn- suggestion [i props]
-  ^{:key i} [:li
-             [:strong (:model props)]
-             (:brand props)])
+(defn- suggestion [props]
+  [:li {:on-mouse-down #(dispatch! a/pedal-selected (:id props) (:searchfield-id props))}
+   [:strong (:model props)]
+   (:brand props)])
 
 (defn dropdown [props]
   [:ul
-   (map-indexed suggestion (:suggestions props))])
+   (.log js/console props)
+   (for [s (:suggestions props)]
+     ^{:key (:id s)} [suggestion (merge s {:searchfield-id (:id props)})])])
 
 (defn component []
   (let [dropdown-visible (reagent/atom false)]
@@ -28,4 +30,4 @@
                       :handle-change (fn [val] (dispatch! a/searchfield-key-pressed (:id props) val))}]
        [:button {:on-click #(dispatch! a/remove-pedal-button-clicked (:id props))} "X"]
        (if @dropdown-visible
-         [dropdown (select-keys props [:suggestions])])])))
+         [dropdown (select-keys props [:suggestions :id])])])))

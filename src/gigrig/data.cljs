@@ -2,7 +2,7 @@
 
 (defonce data
   [
-   {:brand "Aguilar" :model "Tonehammer" :distributor false :isoloator false :other true :comment "Doubler"}
+   {:brand "Aguilar" :model "Tonehammer" :distributor false :isolator false :other true :comment "Doubler"}
    {:brand "Aguilar" :model "Agro" :distributor true :isolator true :other false}
    {:brand "Boss" :model "older ACA pedals (G'n' Fly" :distributor false :isolator true :other false}
    {:brand "Boss" :model "DD-20 Giga Delay" :distributor false :isolator true :other false}
