@@ -39,21 +39,17 @@
 
 (defn child [loc]
   (case (gzip/loc-type loc)
-    :pedal (boxes/boxed-text (gzip/box-meta loc))))
-
-(defn map-siblings [f loc]
-  (if (= (zip/rightmost loc) loc)
-    [(f loc)]
-    (cons (f loc) (map-siblings f (zip/right loc)))))
+    :pedal (boxes/boxed-text (gzip/box-meta loc))
+    :distributor [tree loc]))
 
 (defn tree [loc]
-  [:g]
   (let [root (gzip/box-meta loc)
         children (align (zip/down loc) (- (:x root) ROOT-OFFSET) (+ (:y root) CHILDREN-OFFSET))]
+    ^{:key (str (-> root :text :value) (:x root) (:y root))}
     [:g
-     [lines (line/connect-trident root (map-siblings gzip/box-meta (zip/leftmost children)))]
+     [lines (line/connect-trident root (gzip/map-siblings gzip/box-meta (zip/leftmost children)))]
      [boxes/boxed-text root]
-     (map-siblings child (zip/leftmost children))]))
+     (seq (gzip/map-siblings child (zip/leftmost children)))]))
 
 (defn component [{:keys [zipper]}]
   (let [generator (boxes/generator {:x 0 :y 0})]
