@@ -26,3 +26,11 @@
            (-> z (gzip/set-meta {:meta "true"}) zip/node)))
     (is (= [:isolator [] {:foo "bar"}]
            (-> z zip/down (gzip/set-meta {:foo "bar"}) zip/node)))))
+
+(deftest map-siblings
+  (let [z (gzip/zipper [:distributor [[:pedal "pedal1"] [:pedal "pedal2"]]])]
+    (is (= ["pedal1" "pedal2"]
+           (gzip/map-siblings #(-> % zip/node second) (-> z zip/down)))))
+  (let [z (gzip/zipper [:distributor [[:pedal "pedal1"]]])]
+    (is (= ["pedal1"]
+           (gzip/map-siblings #(-> % zip/node second) (-> z zip/down))))))

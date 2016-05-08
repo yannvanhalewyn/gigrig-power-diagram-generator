@@ -50,5 +50,4 @@
   [f loc]
   (if (= (zip/rightmost loc) loc)
     [(f loc)]
-    (cons (f loc) (map-siblings (zip/right loc) f))))
-
+    (cons (f loc) (map-siblings f (zip/right loc)))))
