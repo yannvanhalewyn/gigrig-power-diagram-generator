@@ -24,8 +24,8 @@
   "Builds an array of box data's in an aligned manner"
   [loc x y]
   (let [node (zip/node loc)
-        x (+ CHILD-SPACING (if (= (zip/leftmost loc) loc) x (box/right (-> loc zip/left zip/node second))))
-        new-loc (zip/replace loc [(gzip/loc-type loc) (box loc x y)])]
+        x (+ CHILD-SPACING (if (= (zip/leftmost loc) loc) x (box/right (-> loc zip/left gzip/box-meta))))
+        new-loc (gzip/set-meta loc (box loc x y))]
     (if (= (zip/rightmost loc) loc)
       new-loc
       (align (zip/right new-loc) x y))))
@@ -39,21 +39,21 @@
 
 (defn child [loc]
   (case (gzip/loc-type loc)
-    :pedal (boxes/boxed-text (second (zip/node loc)))))
+    :pedal (boxes/boxed-text (gzip/box-meta loc))))
 
-(defn map-siblings [loc f]
+(defn map-siblings [f loc]
   (if (= (zip/rightmost loc) loc)
     [(f loc)]
-    (cons (f loc) (map-siblings (zip/right loc) f))))
+    (cons (f loc) (map-siblings f (zip/right loc)))))
 
-(defn tree [{:keys [zipper x y]}]
+(defn tree [loc]
   [:g]
-  (let [root (box zipper x y)
-        children (align (zip/down zipper) (- x ROOT-OFFSET) (+ y CHILDREN-OFFSET))]
+  (let [root (gzip/box-meta loc)
+        children (align (zip/down loc) (- (:x root) ROOT-OFFSET) (+ (:y root) CHILDREN-OFFSET))]
     [:g
-     [lines (line/connect-trident root (map second (zip/children (zip/up children))))]
+     [lines (line/connect-trident root (map-siblings gzip/box-meta (zip/leftmost children)))]
      [boxes/boxed-text root]
-     (map-siblings (zip/leftmost children) child)]))
+     (map-siblings child (zip/leftmost children))]))
 
 (defn component [{:keys [zipper]}]
   (let [generator (boxes/generator {:x 0 :y 0})]
@@ -65,4 +65,4 @@
             :style {:border "1px solid black"}}
       [boxes/boxed-text generator]
       [lines (line/connect-trident generator [(box zipper ROOT-OFFSET CHILDREN-OFFSET)])]
-      [tree {:zipper zipper :x ROOT-OFFSET :y CHILDREN-OFFSET}]]]))
+      [tree (zip/edit zipper merge (box zipper ROOT-OFFSET CHILDREN-OFFSET))]]]))

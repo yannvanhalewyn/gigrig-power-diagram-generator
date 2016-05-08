@@ -36,4 +36,4 @@
      ^{:key id}
      [pedal-search/component (assoc field :id id)])
    [:button {:on-click #(dispatch! a/add-pedal-button-clicked)} "+ Add pedal"]
-   [diagram/component {:zipper (gzip/zipper [:distributor [:pedal "pedal1"] [:pedal "pedal2"]])}]])
+   [diagram/component {:zipper (gzip/zipper [:distributor [[:pedal "pedal1"] [:pedal "pedal2"]]])}]])
