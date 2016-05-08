@@ -33,3 +33,8 @@
    [:rect {:x x :y y :width width :height height :fill (:background text)}]
    [:text {:x (:x text) :y (:y text) :font-family "monospace" :font-size (:size text)}
     (:value text)]])
+
+(defn react-key
+  "returns a unique key for react components"
+  [{:keys [text x y]}]
+  (str (:value text) "-" x ":" y))
