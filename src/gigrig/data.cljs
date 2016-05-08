@@ -1284,7 +1284,7 @@
    {:brand "Voodoo Lab" :model "Sparkle Drive" :distributor true :isolator true :adapter false}
    {:brand "Voodoo Lab" :model "Super-Fuzz" :distributor false :isolator true :adapter false}
    {:brand "Voodoo Lab" :model "Tremolo II" :distributor true :isolator true :adapter false}
-   {:brand "Vox" :model "Wah" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
+   {:brand "Vox" :model "Wah" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
    {:brand "Walrus Audio" :model "Bellwether" :distributor true :isolator true :adapter false}
    {:brand "Walrus Audio" :model "Deep Six Compressor" :distributor true :isolator true :adapter false}
    {:brand "Walrus Audio" :model "Descent" :distributor true :isolator true :adapter false}
@@ -1347,37 +1347,37 @@
    {:brand "Xotic" :model "X Blender" :distributor true :isolator true :adapter false}
    {:brand "Xotic" :model "Xotic Wah" :distributor true :isolator true :adapter false}
    {:brand "ZVEX" :model "Basstortion" :distributor true :isolator true :adapter false}
-   {:brand "ZVEX" :model "Box of Rock" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Box of Rock" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
    {:brand "ZVEX" :model "Channel 2" :distributor true :isolator true :adapter false}
    {:brand "ZVEX" :model "Distortron" :distributor true :isolator true :adapter false}
    {:brand "ZVEX" :model "Double rock" :distributor true :isolator true :adapter false}
-   {:brand "ZVEX" :model "Fat Fuzz Factory" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Fuzz Factory" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Fat Fuzz Factory" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Fuzz Factory" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
    {:brand "ZVEX" :model "Fuzz Factory 7" :distributor true :isolator true :adapter false}
-   {:brand "ZVEX" :model "Fuzz Probe" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Fuzz Probe" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
    {:brand "ZVEX" :model "Fuzzolo" :distributor true :isolator true :adapter false}
-   {:brand "ZVEX" :model "Inventobox" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Inventobox" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
    {:brand "ZVEX" :model "Instant lofi junky" :distributor true :isolator true :adapter false}
-   {:brand "ZVEX" :model "Jonny Octave" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Lo-Fi Loop Junky" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Jonny Octave" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Lo-Fi Loop Junky" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
    {:brand "ZVEX" :model "Loop gate" :distributor true :isolator true :adapter false}
-   {:brand "ZVEX" :model "Machine" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Machine" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
    {:brand "ZVEX" :model "Mastotron" :distributor true :isolator true :adapter false}
-   {:brand "ZVEX" :model "Octane 3" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Ooh Wah II" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Ring Tone" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Seek Trem" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Seek Wah" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Super Duper 2 in 1" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Super Hard-On" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Octane 3" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Ooh Wah II" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Ring Tone" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Seek Trem" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Seek Wah" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Super Duper 2 in 1" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Super Hard-On" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
    {:brand "ZVEX" :model "Super Ringtone" :distributor true :isolator true :adapter false}
    {:brand "ZVEX" :model "Super Seekwah" :distributor true :isolator true :adapter false}
    {:brand "ZVEX" :model "Super SeekTrem" :distributor true :isolator true :adapter false}
    {:brand "ZVEX" :model "Sonar" :distributor true :isolator true :adapter false}
-   {:brand "ZVEX" :model "The Box of Rock" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Tremolo Probe" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Tremorama" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Vexter Fuzz Factory" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Wah Probe" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
-   {:brand "ZVEX" :model "Woolly Mammoth" :distributor true :isolator true :adapter true :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "The Box of Rock" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Tremolo Probe" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Tremorama" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Vexter Fuzz Factory" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Wah Probe" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
+   {:brand "ZVEX" :model "Woolly Mammoth" :distributor true :isolator true :adapter false :comment "if no DC input use VB-BC"}
    ])
