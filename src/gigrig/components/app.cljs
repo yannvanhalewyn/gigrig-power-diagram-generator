@@ -2,6 +2,7 @@
   (:require [gigrig.actions :as a]
             [redux.core :refer [dispatch!]]
             [gigrig.powertree :as ptree]
+            [gigrig.zipper :as gzip]
             [gigrig.components.diagram :as diagram]
             [gigrig.components.pedal-search :as pedal-search]))
 
@@ -11,6 +12,9 @@
    {:brand "Ibanez" :model "Whammy" :distributor true :isolator false :other false}
    {:brand "Ibanez" :model "BlueSky" :distributor true :isolator true :other false}])
 
+(def test-tree
+  [:distributor [[:time-lord [:pedal "pedal1"]]]])
+
 (defn component
   [state]
   [:div#app
@@ -19,4 +23,4 @@
      ^{:key id}
      [pedal-search/component (assoc field :id id)])
    [:button {:on-click #(dispatch! a/add-pedal-button-clicked)} "+ Add pedal"]
-   [diagram/component {:zipper (ptree/build test-pedals)}]])
+   [diagram/component {:zipper (gzip/zipper test-tree)}]])

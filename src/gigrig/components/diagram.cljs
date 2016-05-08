@@ -12,6 +12,7 @@
 
 (def ROOT-OFFSET 10)
 (def CHILDREN-OFFSET 25)
+(def ADAPTER-OFFSET 13)
 (def CHILD-SPACING 2)
 
 (defn- box
@@ -20,7 +21,8 @@
   (case (gzip/loc-type loc)
     :pedal (boxes/pedal (gzip/box-meta loc) {:x x :y y})
     :isolator (boxes/isolator {:x x :y y})
-    :distributor (boxes/distributor {:x x :y y})))
+    :distributor (boxes/distributor {:x x :y y})
+    :time-lord (boxes/time-lord {:x x :y y})))
 
 (defn- align
   "Builds an array of box data's in an aligned manner"
@@ -38,14 +40,25 @@
        :stroke-linecap "round"}
    (for [l lines] ^{:key (line/react-key l)} [:line l])])
 
+(defn adapter [loc]
+  (let [root (gzip/box-meta loc)
+        pedal-name (-> loc zip/node second second)
+        child (boxes/pedal pedal-name {:x (:x root) :y (+ (:y root) ADAPTER-OFFSET)})]
+    [:g
+     [boxes/boxed-text root]
+     [boxes/boxed-text child]
+     [lines (line/connect-trident root [child])]]))
+
 (defn node
   "Renders the node. If it's a branch, it recursively render a new
   tree. Else it will render the node"
   [loc]
   (let [box-data (gzip/box-meta loc)]
-    (if (zip/branch? loc)
-      ^{:key (boxes/react-key box-data)} [tree loc]
-      ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data])))
+    (if (= :time-lord (gzip/loc-type loc))
+      ^{:key "foo"} [adapter loc]
+      (if (zip/branch? loc)
+        ^{:key (boxes/react-key box-data)} [tree loc]
+        ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data]))))
 
 (defn tree
   "Render the root node at loc and all it's children nodes and the
