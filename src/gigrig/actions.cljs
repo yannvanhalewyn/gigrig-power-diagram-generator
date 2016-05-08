@@ -8,6 +8,7 @@
   {:type :key-pressed
    :value query-value
    :id field-id
+   :query query-value
    :suggestions (s/search indexed-data query-value)})
 
 (defn add-pedal-button-clicked [_]
@@ -23,3 +24,9 @@
   {:type :pedal-selected
    :searchfield searchfield-id
    :pedal (nth indexed-data pedal-id)})
+
+(defn pedal-deselected
+  "User has clicked the clear button next to a selected pedal"
+  [_ searchfield-id]
+  {:type :pedal-deselected
+   :searchfield searchfield-id})
