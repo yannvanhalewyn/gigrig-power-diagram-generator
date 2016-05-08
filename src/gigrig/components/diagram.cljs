@@ -8,10 +8,12 @@
 
 (declare tree)
 
-(def ROOT-OFFSET 10)
-(def CHILDREN-OFFSET 25)
-(def ADAPTER-OFFSET 13)
-(def CHILD-SPACING 2)
+(def GENERATOR-OFFSET "Vertical distance between the generator and the first node" 30)
+(def ROOT-OFFSET "Horizontal displacement of a root node against it's child nodes" 10)
+(def CHILDREN-OFFSET "Vertical distance between a root node and a child" 25)
+(def ADAPTER-OFFSET "Vertical distance between an adaptor and it's suppliant" 13)
+(def CHILD-SPACING "The horizontal spacing between children" 2)
+(def CHILD-VERTICAL-STEP "Additional vertical distance increased for each child under same root" 15)
 
 (defn- box
   "Returns box data for the given node at loc positioned on x and y"
@@ -58,12 +60,19 @@
         ^{:key (boxes/react-key box-data)} [tree loc]
         ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data]))))
 
+(defn y-indentation [loc]
+  (->> (zip/rights loc)
+       (map gzip/branch?)
+       (filter identity)
+       count
+       (* CHILD-VERTICAL-STEP)))
+
 (defn tree
   "Render the root node at loc and all it's children nodes and the
   lines connecting the root to each child node"
   [loc]
   (let [root (gzip/box-meta loc)
-        children (align (zip/down loc) (- (:x root) ROOT-OFFSET) (+ (:y root) CHILDREN-OFFSET))]
+        children (align (zip/down loc) (- (:x root) ROOT-OFFSET) (+ (:y root) CHILDREN-OFFSET (y-indentation loc)))]
     [:g
      [lines (line/connect-trident root (gzip/map-siblings gzip/box-meta (zip/leftmost children)))]
      [boxes/boxed-text root]
@@ -73,14 +82,15 @@
   "The main diagram component. Takes in the zipper tree and renders
   the entire power suplly diagram as an svg"
   [{:keys [zipper]}]
-  (let [generator (boxes/generator {:x 0 :y 0})]
+  (let [generator (boxes/generator {:x 10 :y 0})]
     [:div
      (when (zip/down zipper)
        [:h1 "DIAGRAM"]
-       [:svg {:view-box "0 0 250 100"
-              :width "1200"
-              :height "800"
-              :style {:border "1px solid black"}}
-        [boxes/boxed-text generator]
-        [lines (line/connect-trident generator [(box zipper ROOT-OFFSET CHILDREN-OFFSET)])]
-        [tree (zip/edit zipper merge (box zipper ROOT-OFFSET CHILDREN-OFFSET))]])]))
+       (let [root-box (box zipper (+ 10 ROOT-OFFSET) GENERATOR-OFFSET)]
+         [:svg {:view-box "0 0 200 200"
+                :width "1200"
+                :height "1200"
+                :style {:border "1px solid black"}}
+          [boxes/boxed-text generator]
+          [lines (line/connect-trident generator [root-box])]
+          [tree (gzip/set-meta zipper root-box)]]))]))
