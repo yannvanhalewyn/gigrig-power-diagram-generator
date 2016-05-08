@@ -53,7 +53,7 @@
   [loc]
   (let [box-data (gzip/box-meta loc)]
     (if (= :time-lord (gzip/loc-type loc))
-      ^{:key "foo"} [adapter loc]
+      ^{:key (boxes/react-key box-data)} [adapter loc]
       (if (zip/branch? loc)
         ^{:key (boxes/react-key box-data)} [tree loc]
         ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data]))))
