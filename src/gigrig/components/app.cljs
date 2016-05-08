@@ -14,7 +14,7 @@
     [:pedal "pedal5"]
     [:distributor [[:pedal "pedal 6"]
                    [:pedal "pedal 7"]
-                   [:distributor [[:pedal "pedal 8"]]]
+                   [:isolator [[:pedal "pedal 8"]]]
                    [:distributor [[:pedal "pedal 9"]
                                   [:pedal "pedal 10"]]]]]]])
 
