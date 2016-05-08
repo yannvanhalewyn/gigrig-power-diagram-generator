@@ -66,19 +66,55 @@
                      (ptree/insert [:isolator [:pedal "pedal2"]]))))))
 
 (deftest build
-  (is (eql-zip [:distributor [[:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:pedal "pedal6"]] nil]
-               (ptree/build (distributor-pedals 6))))
-  (is (eql-zip [:distributor [[:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:distributor [[:pedal "pedal6"] [:pedal "pedal7"]] nil]] nil]
-               (ptree/build (distributor-pedals 7))))
-  (is (eql-zip [:distributor [[:pedal "pedal1"] [:pedal "pedal2"] [:isolator [[:pedal "pedal3"] [:pedal "pedal4"]]]] nil]
-               (ptree/build [(distributor-pedal 1) (distributor-pedal 2) (isolator-pedal 3) (isolator-pedal 4)])))
-  (is (eql-zip [:distributor [[:pedal "pedal7"]
-                              [:isolator [[:pedal "pedal1"]
-                                          [:pedal "pedal2"]
-                                          [:pedal "pedal3"]
-                                          [:pedal "pedal4"]]]
-                              [:isolator [[:pedal "pedal5"]
-                                          [:pedal "pedal6"]]]] nil]
-               (ptree/build (cons (distributor-pedal 7) (isolator-pedals 6)))))
-  (is (eql-zip [:distributor [[:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:isolator [[:pedal "pedal6"] [:pedal "pedal7"]]]] nil]
-               (ptree/build (concat (distributor-pedals 5) (isolator-pedals 6 7))))))
+  (testing "6 pedals - 1 distributor"
+    (is (eql-zip [:distributor [[:pedal "pedal1"]
+                                [:pedal "pedal2"]
+                                [:pedal "pedal3"]
+                                [:pedal "pedal4"]
+                                [:pedal "pedal5"]
+                                [:pedal "pedal6"]] nil]
+                 (ptree/build (distributor-pedals 6)))))
+  (testing "5 pedals - 2 isolators"
+    (is (eql-zip [:distributor [[:isolator [[:pedal "pedal1"]
+                                            [:pedal "pedal2"]
+                                            [:pedal "pedal3"]
+                                            [:pedal "pedal4"]]]
+                                [:isolator [[:pedal "pedal5"]]]] nil]
+                 (ptree/build (isolator-pedals 5)))))
+  (testing "7 pedals - 2 distributors"
+    (is (eql-zip [:distributor [[:pedal "pedal1"]
+                                [:pedal "pedal2"]
+                                [:pedal "pedal3"]
+                                [:pedal "pedal4"]
+                                [:pedal "pedal5"]
+                                [:distributor [[:pedal "pedal6"] [:pedal "pedal7"]] nil]] nil]
+                 (ptree/build (distributor-pedals 7)))))
+  (testing "4 pedals - 1 distributor and 1 isolator"
+    (is (eql-zip [:distributor [[:pedal "pedal1"]
+                                [:pedal "pedal2"]
+                                [:isolator [[:pedal "pedal3"]
+                                            [:pedal "pedal4"]]]] nil]
+                 (ptree/build [(distributor-pedal 1) (distributor-pedal 2) (isolator-pedal 3) (isolator-pedal 4)]))))
+  (testing "7 pedals - 1 distributor and 2 isolators"
+    (is (eql-zip [:distributor [[:pedal "pedal7"]
+                                [:isolator [[:pedal "pedal1"]
+                                            [:pedal "pedal2"]
+                                            [:pedal "pedal3"]
+                                            [:pedal "pedal4"]]]
+                                [:isolator [[:pedal "pedal5"]
+                                            [:pedal "pedal6"]]]] nil]
+                 (ptree/build (cons (distributor-pedal 7) (isolator-pedals 6))))))
+  (testing "7 pedals - 1 distributor and 1 isolator"
+    (is (eql-zip [:distributor [[:pedal "pedal1"]
+                                [:pedal "pedal2"]
+                                [:pedal "pedal3"]
+                                [:pedal "pedal4"]
+                                [:pedal "pedal5"]
+                                [:isolator [[:pedal "pedal6"]
+                                            [:pedal "pedal7"]]]] nil]
+                 (ptree/build (concat (distributor-pedals 5) (isolator-pedals 6 7))))))
+  (testing "Edge case: Only 1 root isolator"
+    (is (eql-zip [:isolator [[:pedal "pedal1"]]]
+                 (ptree/build (isolator-pedals 1))))
+    (is (eql-zip [:isolator [[:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"]]]
+                 (ptree/build (isolator-pedals 4))))))

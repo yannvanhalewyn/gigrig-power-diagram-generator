@@ -59,7 +59,11 @@
 (defn- build-zipper
   "Inserts all entities into a new gigrig zipper"
   [entities]
-  (reduce insert (gzip/zipper) entities))
+  ;; Edge case when there are 4 or less pedals only needing an isolator
+  (if (and (= 1 (count entities))
+           (= :isolator (-> entities first first)))
+    (gzip/zipper (first entities))
+    (reduce insert (gzip/zipper) entities)))
 
 ;; Main
 ;; ====
