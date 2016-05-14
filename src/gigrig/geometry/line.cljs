@@ -1,6 +1,8 @@
 (ns gigrig.geometry.line
   (:require [gigrig.geometry.box :as box]))
 
+(def TRIDENT-MIDDLE-BAR-HEIGHT "The height of the trident middlebar above the children" 2.5)
+
 (defn line
   "Returns line-data from p1 to p2"
   [p1 p2]
@@ -18,7 +20,7 @@
   subboxes in a 'trident' fashion"
   [root children]
   (let [offsets (map #(:x (box/center %)) (conj children root))
-        y-height (+ (box/bottom root) (/ (- (:y (first children)) (box/bottom root)) 2))
+        y-height (- (:y (first children)) TRIDENT-MIDDLE-BAR-HEIGHT)
         left-x (apply min offsets)
         right-x (apply max offsets)]
     (concat
