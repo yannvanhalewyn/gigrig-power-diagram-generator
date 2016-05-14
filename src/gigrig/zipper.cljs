@@ -54,8 +54,10 @@
   "Applies f to every child node of root and returns a new zipper with
   updated children"
   [f root]
-  (loop [loc (zip/down root)]
-    (let [new-node (f loc)]
-      (if-let [next (zip/right new-node)]
-        (recur next)
-        (zip/up new-node)))))
+  (if-let [first-child (zip/down root)]
+    (loop [loc first-child]
+      (let [new-node (f loc)]
+        (if-let [next (zip/right new-node)]
+          (recur next)
+          (zip/up new-node))))
+    root))

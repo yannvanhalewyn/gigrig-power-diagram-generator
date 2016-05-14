@@ -15,8 +15,7 @@
      ^{:key id}
      [pedal-search/component (assoc field :id id)])
    [:button {:on-click #(dispatch! a/add-pedal-button-clicked)} "+ Add pedal"]
-   [diagram/component {:zipper (-> [{:distributor true :model "pedal1"}
-                                    {:isolator true :adapter false :model "pedal2"}
-                                    {:isolator true :model "pedal3"}]
+   [diagram/component {:zipper (-> @state
+                                   selectors/selected-pedals
                                    ptree/build
                                    positioning/emplace)}]])
