@@ -6,9 +6,7 @@
 (defn- branch?
   "Returns true if the node is a distributor or isolator"
   [node]
-  (or
-   (= :distributor (first node))
-   (= :isolator (first node))))
+  (some (partial = (first node)) [:distributor :isolator :time-lord]))
 
 (defn- children
   "Returns all the children of the node"

@@ -23,6 +23,11 @@
     :distributor (boxes/distributor {:x x :y y})
     :time-lord (boxes/time-lord {:x x :y y})))
 
+(defn- adapter?
+  "Returns true if location is an adaptor type. eg: Timelord, Doubler, etc.."
+  [loc]
+  (some (partial = (gzip/loc-type loc)) [:time-lord]))
+
 (defn- align
   "Calculates the box data for the given child"
   [loc x y]
@@ -37,5 +42,7 @@
   containing the position of each element in the tree"
   ([tree] (emplace tree (+ 20 ROOT-OFFSET) GENERATOR-OFFSET))
   ([tree x y]
-   (let [root (gzip/set-meta tree (box tree x y))]
-     (gzip/reduce-children #(align % (+ x ROOT-OFFSET) (+ y CHILDREN-OFFSET)) root))))
+   (let [root (gzip/set-meta tree (box tree x y))
+         children-x (+ x ROOT-OFFSET)
+         children-y (+ y (if (adapter? root) ADAPTER-OFFSET CHILDREN-OFFSET))]
+     (gzip/reduce-children #(align % children-x children-y) root))))

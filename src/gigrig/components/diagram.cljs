@@ -1,10 +1,8 @@
 (ns gigrig.components.diagram
   (:require [gigrig.components.boxes :as boxes]
             [gigrig.geometry.line :as line]
-            [gigrig.geometry.box :as box]
             [gigrig.zipper :as gzip]
-            [clojure.zip :as zip :refer [children]]
-            [clojure.string :as str]))
+            [clojure.zip :as zip :refer [children]]))
 
 (declare tree)
 
@@ -15,22 +13,14 @@
        :stroke-linecap "round"}
    (for [l lines] ^{:key (line/react-key l)} [:line l])])
 
-(defn adapter [loc]
-  [:g
-   [lines (line/connect-trident loc [(zip/down loc)])]
-   [boxes/boxed-text (gzip/box-meta loc)]
-   [boxes/boxed-text (-> loc zip/down gzip/box-meta)]])
-
 (defn node
   "Renders the node. If it's a branch, it recursively render a new
   tree. Else it will render the node"
   [loc]
   (let [box-data (gzip/box-meta loc)]
-    (if (= :time-lord (gzip/loc-type loc))
-      ^{:key (boxes/react-key box-data)} [adapter loc]
-      (if (zip/branch? loc)
-        ^{:key (boxes/react-key box-data)} [tree loc]
-        ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data]))))
+    (if (zip/branch? loc)
+      ^{:key (boxes/react-key box-data)} [tree loc]
+      ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data])))
 
 (defn tree
   "Render the root node at loc and all it's children nodes and the
