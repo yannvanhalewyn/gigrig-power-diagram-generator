@@ -12,6 +12,8 @@
 (def CHILD-SPACING "The horizontal spacing between children" 2)
 (def CHILD-VERTICAL-STEP "Additional vertical distance increased for each child under same root" 15)
 
+(declare emplace)
+
 (defn- box
   "Returns box data for the given node at loc positioned on x and y"
   [loc x y]
@@ -24,8 +26,11 @@
 (defn- align
   "Calculates the box data for the given child"
   [loc x y]
-  (let [x (+ CHILD-SPACING (if (= (zip/leftmost loc) loc) x (box/right (-> loc zip/left gzip/box-meta))))]
-    (gzip/set-meta loc (box loc x y))))
+  (let [x (+ CHILD-SPACING (if (= (zip/leftmost loc) loc) x (box/right (-> loc zip/left gzip/box-meta))))
+        new-loc (gzip/set-meta loc (box loc x y))]
+    (if (zip/branch? new-loc)
+      (emplace new-loc x y)
+      new-loc)))
 
 (defn emplace
   "Takes in a zipper representing the powertree and returns a new tree
