@@ -2,7 +2,6 @@
   (:require [gigrig.zipper :as gzip]
             [clojure.zip :as zip]))
 
-
 ;; Tree
 ;; ====
 (def DISTRIBUTOR_LIMIT 6)
@@ -84,4 +83,5 @@
   (-> (map simplify pedals)
       group-by-power
       prepare-groups
-      build-zipper))
+      build-zipper
+      gzip/root))

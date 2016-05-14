@@ -72,6 +72,20 @@
                      (ptree/insert [:pedal "pedal5"])
                      (ptree/insert [:pedal "pedal6"])
                      (ptree/insert [:pedal "pedal7"]))))
+    (is (= [:distributor [[:pedal "pedal1"]
+                          [:pedal "pedal2"]
+                          [:pedal "pedal3"]
+                          [:pedal "pedal4"]
+                          [:pedal "pedal5"]
+                          [:distributor [[:pedal "pedal6"]
+                                         [:pedal "pedal7"]
+                                         [:pedal "pedal8"]
+                                         [:pedal "pedal9"]
+                                         [:pedal "pedal10"]
+                                         [:distributor [[:pedal "pedal11"] [:pedal "pedal12"]] nil]]
+                           nil]]
+            nil]
+           (zip/root (ptree/insert (ptree/build (distributor-pedals 11)) [:pedal "pedal12"]))))
     (is (eql-zip [:distributor [[:pedal "pedal1"] [:isolator [:pedal "pedal2"]]] nil]
                  (-> root
                      (ptree/insert [:pedal "pedal1"])

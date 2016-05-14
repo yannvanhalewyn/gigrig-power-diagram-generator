@@ -61,3 +61,10 @@
           (recur next)
           (zip/up new-node))))
     root))
+
+(defn root
+  "Returns the root node as it's own zipper"
+  [loc]
+  (if-let [up (zip/up loc)]
+    (recur up)
+    loc))
