@@ -1,28 +1,30 @@
 (ns gigrig.components.diagram
-  (:require [gigrig.components.boxes :as boxes]
+  (:require [gigrig.boxed-text-data :as btd]
+            [gigrig.components.boxes :as boxes]
             [gigrig.geometry.line :as line]
             [gigrig.zipper :as gzip]
             [clojure.zip :as zip :refer [children]]))
 
 (declare tree)
 
-(defn lines
+(defn- lines
   "Renders an svg group of lines for each line in lines."
   [lines]
   [:g {:stroke "black"
        :stroke-linecap "round"}
    (for [l lines] ^{:key (line/react-key l)} [:line l])])
 
-(defn node
+(defn- node
   "Renders the node. If it's a branch, it recursively render a new
   tree. Else it will render the node"
   [loc]
-  (let [box-data (gzip/box-meta loc)]
+  (let [box-data (gzip/box-meta loc)
+        key (boxes/react-key box-data)]
     (if (zip/branch? loc)
-      ^{:key (boxes/react-key box-data)} [tree loc]
-      ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data])))
+      ^{:key key} [tree loc]
+      ^{:key key} [boxes/boxed-text box-data])))
 
-(defn tree
+(defn- tree
   "Render the root node at loc and all it's children nodes and the
   lines connecting the root to each child node"
   [root]
@@ -35,7 +37,7 @@
   "The main diagram component. Takes in the zipper tree and renders
   the entire power suplly diagram as an svg"
   [{:keys [zipper]}]
-  (let [generator (boxes/generator {:x 10 :y 0})]
+  (let [generator (btd/generator {:x 10 :y 0})]
     [:div
      (when (zip/down zipper)
        [:h1 "DIAGRAM"]

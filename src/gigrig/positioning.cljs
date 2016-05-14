@@ -1,7 +1,7 @@
 (ns gigrig.positioning
   (:require [gigrig.powertree :as ptree]
             [gigrig.geometry.box :as box]
-            [gigrig.components.boxes :as boxes]
+            [gigrig.boxed-text-data :as btd]
             [clojure.zip :as zip]
             [gigrig.zipper :as gzip]))
 
@@ -18,10 +18,10 @@
   "Returns box data for the given node at loc positioned on x and y"
   [loc x y]
   (case (gzip/loc-type loc)
-    :pedal (boxes/pedal (gzip/box-meta loc) {:x x :y y})
-    :isolator (boxes/isolator {:x x :y y})
-    :distributor (boxes/distributor {:x x :y y})
-    :time-lord (boxes/time-lord {:x x :y y})))
+    :pedal (btd/pedal (gzip/box-meta loc) {:x x :y y})
+    :isolator (btd/isolator {:x x :y y})
+    :distributor (btd/distributor {:x x :y y})
+    :time-lord (btd/time-lord {:x x :y y})))
 
 (defn- adapter?
   "Returns true if location is an adaptor type. eg: Timelord, Doubler, etc.."
