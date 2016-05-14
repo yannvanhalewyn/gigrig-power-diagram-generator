@@ -51,7 +51,7 @@
 (defn- zip-adaptors
   "Returns all adaptors with their pedals ready to be added to a distributor"
   [adaptors]
-  (for [pedal adaptors] [(:adapter pedal) [:pedal (:name pedal)]]))
+  (for [pedal adaptors] [(:adapter pedal) [[:pedal (:name pedal)]]]))
 
 (defn- group-by-power
   "Groups the pedals by whatever power supply they require"

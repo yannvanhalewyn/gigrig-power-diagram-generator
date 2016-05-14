@@ -133,5 +133,5 @@
 
 (deftest build-adapters
   (testing "1 pedal with adapter"
-    (is (eql-zip [:distributor [[:time-lord [:pedal "pedal1"]]] nil]
+    (is (eql-zip [:distributor [[:time-lord [[:pedal "pedal1"]]]] nil]
                  (ptree/build [(timelord-pedal 1)])))))

@@ -14,7 +14,7 @@
 (defn- suggestion [props]
   [:li {:on-mouse-down #(dispatch! a/pedal-selected (:id props) (:searchfield-id props))}
    [:strong (:model props)]
-   (:brand props)])
+   [:span (:brand props)]])
 
 (defn dropdown [props]
   [:ul
