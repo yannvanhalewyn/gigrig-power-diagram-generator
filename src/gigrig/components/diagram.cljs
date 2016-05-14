@@ -8,31 +8,6 @@
 
 (declare tree)
 
-(def GENERATOR-OFFSET "Vertical distance between the generator and the first node" 30)
-(def ROOT-OFFSET "Horizontal displacement of a root node against it's child nodes" 10)
-(def CHILDREN-OFFSET "Vertical distance between a root node and a child" 25)
-(def ADAPTER-OFFSET "Vertical distance between an adaptor and it's suppliant" 13)
-(def CHILD-SPACING "The horizontal spacing between children" 2)
-(def CHILD-VERTICAL-STEP "Additional vertical distance increased for each child under same root" 15)
-
-(defn- box
-  "Returns box data for the given node at loc positioned on x and y"
-  [loc x y]
-  (case (gzip/loc-type loc)
-    :pedal (boxes/pedal (gzip/box-meta loc) {:x x :y y})
-    :isolator (boxes/isolator {:x x :y y})
-    :distributor (boxes/distributor {:x x :y y})
-    :time-lord (boxes/time-lord {:x x :y y})))
-
-(defn- align
-  "Builds an array of box data's in an aligned manner"
-  [loc x y]
-  (let [x (+ CHILD-SPACING (if (= (zip/leftmost loc) loc) x (box/right (-> loc zip/left gzip/box-meta))))
-        new-loc (gzip/set-meta loc (box loc x y))]
-    (if (= (zip/rightmost loc) loc)
-      new-loc
-      (align (zip/right new-loc) x y))))
-
 (defn lines
   "Renders an svg group of lines for each line in lines."
   [lines]
@@ -41,13 +16,10 @@
    (for [l lines] ^{:key (line/react-key l)} [:line l])])
 
 (defn adapter [loc]
-  (let [root (gzip/box-meta loc)
-        pedal-name (-> loc zip/node second second)
-        child (boxes/pedal pedal-name {:x (:x root) :y (+ (:y root) ADAPTER-OFFSET)})]
-    [:g
-     [lines (line/connect-trident root [child])]
-     [boxes/boxed-text root]
-     [boxes/boxed-text child]]))
+  [:g
+   [lines (line/connect-trident loc [(zip/down loc)])]
+   [boxes/boxed-text (gzip/box-meta loc)]
+   [boxes/boxed-text (-> loc zip/down gzip/box-meta)]])
 
 (defn node
   "Renders the node. If it's a branch, it recursively render a new
@@ -60,23 +32,14 @@
         ^{:key (boxes/react-key box-data)} [tree loc]
         ^{:key (boxes/react-key box-data)} [boxes/boxed-text box-data]))))
 
-(defn y-indentation [loc]
-  (->> (zip/rights loc)
-       (map gzip/branch?)
-       (filter identity)
-       count
-       (* CHILD-VERTICAL-STEP)))
-
 (defn tree
   "Render the root node at loc and all it's children nodes and the
   lines connecting the root to each child node"
-  [loc]
-  (let [root (gzip/box-meta loc)
-        children (align (zip/down loc) (- (:x root) ROOT-OFFSET) (+ (:y root) CHILDREN-OFFSET (y-indentation loc)))]
-    [:g
-     [lines (line/connect-trident root (gzip/map-siblings gzip/box-meta (zip/leftmost children)))]
-     [boxes/boxed-text root]
-     (seq (gzip/map-siblings node (zip/leftmost children)))]))
+  [root]
+  [:g
+   [lines (line/connect-trident (gzip/box-meta root) (gzip/map-siblings gzip/box-meta (zip/down root)))]
+   [boxes/boxed-text (gzip/box-meta root)]
+   (seq (gzip/map-siblings node (zip/down root)))])
 
 (defn component
   "The main diagram component. Takes in the zipper tree and renders
@@ -86,11 +49,9 @@
     [:div
      (when (zip/down zipper)
        [:h1 "DIAGRAM"]
-       (let [root-box (box zipper (+ 10 ROOT-OFFSET) GENERATOR-OFFSET)]
-         [:svg {:view-box "0 0 200 200"
-                :width "1200"
-                :height "1200"
-                :style {:border "1px solid black"}}
-          [boxes/boxed-text generator]
-          [lines (line/connect-trident generator [root-box])]
-          [tree (gzip/set-meta zipper root-box)]]))]))
+       [:svg {:view-box "0 0 200 200"
+              :width "1200"
+              :height "1200"}
+        [boxes/boxed-text generator]
+        [lines (line/connect-trident generator [(gzip/box-meta zipper)])]
+        [tree zipper]])]))

@@ -4,6 +4,7 @@
             [gigrig.selectors :as selectors]
             [gigrig.powertree :as ptree]
             [gigrig.components.diagram :as diagram]
+            [gigrig.positioning :as positioning]
             [gigrig.components.pedal-search :as pedal-search]))
 
 (defn component
@@ -14,4 +15,7 @@
      ^{:key id}
      [pedal-search/component (assoc field :id id)])
    [:button {:on-click #(dispatch! a/add-pedal-button-clicked)} "+ Add pedal"]
-   [diagram/component {:zipper (ptree/build (selectors/selected-pedals @state))}]])
+   [diagram/component {:zipper (-> [{:distributor true :model "pedal1"}
+                                    {:distributor true :model "pedal2"}]
+                                   ptree/build
+                                   positioning/emplace)}]])

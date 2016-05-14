@@ -51,3 +51,13 @@
   (if (= (zip/rightmost loc) loc)
     [(f loc)]
     (cons (f loc) (map-siblings f (zip/right loc)))))
+
+(defn reduce-children
+  "Applies f to every child node of root and returns a new zipper with
+  updated children"
+  [f root]
+  (loop [loc (zip/down root)]
+    (let [new-node (f loc)]
+      (if-let [next (zip/right new-node)]
+        (recur next)
+        (zip/up new-node)))))
