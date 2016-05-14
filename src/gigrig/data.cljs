@@ -2,7 +2,7 @@
 
 (defonce data
   [
-   {:brand "Aguilar" :model "Tonehammer" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Aguilar" :model "Tonehammer" :distributor false :isolator false :adapter :doubler}
    {:brand "Aguilar" :model "Agro" :distributor true :isolator true :adapter false}
    {:brand "Boss" :model "older ACA pedals (G'n' Fly" :distributor false :isolator true :adapter false}
    {:brand "Boss" :model "DD-20 Giga Delay" :distributor false :isolator true :adapter false}
@@ -17,7 +17,7 @@
    {:brand "Danelectro" :model "60's Series Psycho Flange" :distributor true :isolator true :adapter false}
    {:brand "Danelectro" :model "Black Paisley Liquid Metal" :distributor true :isolator true :adapter false}
    {:brand "Danelectro" :model "Blue Paisley Pure Drive" :distributor true :isolator true :adapter false}
-   {:brand "Danelectro" :model "Cool Cat Chorus" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Danelectro" :model "Cool Cat Chorus" :distributor false :isolator false :adapter :doubler}
    {:brand "Danelectro" :model "Cool Cat Drive (and V2)" :distributor true :isolator true :adapter false}
    {:brand "Danelectro" :model "Cool Cat Fuzz (and V2)" :distributor true :isolator true :adapter false}
    {:brand "Danelectro" :model "Cool Cat Metal" :distributor true :isolator true :adapter false}
@@ -56,7 +56,7 @@
    {:brand "Danelectro" :model "Mini Series Surf & Turf Compressor" :distributor true :isolator true :adapter false}
    {:brand "Danelectro" :model "Mini Series T-Bone Distortion" :distributor true :isolator true :adapter false}
    {:brand "Danelectro" :model "Mini Series Tuna Melt Tremolo" :distributor true :isolator true :adapter false}
-   {:brand "Danelectro" :model "Original Series Cool Cat" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Danelectro" :model "Original Series Cool Cat" :distributor false :isolator false :adapter :doubler}
    {:brand "Danelectro" :model "Original Series Daddy O" :distributor true :isolator true :adapter false}
    {:brand "Danelectro" :model "Original Series Dan Echo" :distributor true :isolator true :adapter false}
    {:brand "Danelectro" :model "Original Series Fab Tone" :distributor true :isolator true :adapter false}
@@ -73,7 +73,7 @@
    {:brand "Darkglass Electronics" :model "Microtubes Vintage" :distributor true :isolator true :adapter true :comment "SupaNova"}
    {:brand "Darkglass Electronics" :model "Microtubes Vintage Deluxe" :distributor true :isolator true :adapter false}
    {:brand "Death By Audio" :model "Apocalypse" :distributor true :isolator true :adapter false}
-   {:brand "Death By Audio" :model "Echo Dream 2" :distributor true :isolator true :adapter true :comment "Doubler"}
+   {:brand "Death By Audio" :model "Echo Dream 2" :distributor true :isolator true :adapter :doubler}
    {:brand "Death By Audio" :model "Fuzz War" :distributor true :isolator true :adapter false}
    {:brand "Death By Audio" :model "Ghost Echo" :distributor true :isolator true :adapter false}
    {:brand "Death By Audio" :model "Interstellar Overdriver" :distributor true :isolator true :adapter false}
@@ -178,9 +178,9 @@
    {:brand "Dunlop" :model "KH95 Kirk Hammett Wah" :distributor true :isolator true :adapter false}
    {:brand "Dunlop" :model "EW95V Mr Crybaby Super V/W" :distributor true :isolator true :adapter false}
    {:brand "Dunlop" :model "Q95 Cry Baby Q Wah Wah" :distributor true :isolator true :adapter false}
-   {:brand "Dunlop" :model "SW95 Slash Signature Wah" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Dunlop" :model "SW95 Slash Signature Wah" :distributor false :isolator false :adapter :doubler}
    {:brand "Dunlop" :model "TS1 Tremolo Stereo Pan" :distributor true :isolator true :adapter false}
-   {:brand "Dunlop" :model "UV1 Uni-Vibe" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Dunlop" :model "UV1 Uni-Vibe" :distributor false :isolator false :adapter :doubler}
    {:brand "Dunlop" :model "UV1SC Uni-Vibe Stereo Chorus" :distributor true :isolator true :adapter false}
    {:brand "Dunlop" :model "ZW45 Zakk Wylde Signature" :distributor true :isolator true :adapter false}
    {:brand "Dunlop" :model "Uni-vibe" :distributor true :isolator true :adapter false}
@@ -211,8 +211,8 @@
    {:brand "Earthquaker devices" :model "Disaster Transport Jr." :distributor false :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Crimson Drive" :distributor false :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Hoof Reaper Octave Fuzz" :distributor false :isolator true :adapter false}
-   {:brand "Earthquaker devices" :model "Talons" :distributor false :isolator true :adapter true :comment "Doubler"}
-   {:brand "Earthquaker devices" :model "The Depths" :distributor false :isolator true :adapter true :comment "Doubler"}
+   {:brand "Earthquaker devices" :model "Talons" :distributor false :isolator true :adapter :doubler}
+   {:brand "Earthquaker devices" :model "The Depths" :distributor false :isolator true :adapter :doubler}
    {:brand "Earthquaker devices" :model "Bit Commander" :distributor false :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Black Eye" :distributor true :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Dirt Transmitter" :distributor true :isolator true :adapter false}
@@ -221,7 +221,7 @@
    {:brand "Earthquaker devices" :model "Ghost Echo" :distributor true :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Grand Orbiter" :distributor true :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Hummingbird" :distributor true :isolator true :adapter false}
-   {:brand "Earthquaker devices" :model "Monarch" :distributor false :isolator true :adapter true :comment "Doubler"}
+   {:brand "Earthquaker devices" :model "Monarch" :distributor false :isolator true :adapter :doubler}
    {:brand "Earthquaker devices" :model "Organizer" :distributor false :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Pitchbay" :distributor false :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Terminal" :distributor false :isolator true :adapter false}
@@ -231,7 +231,7 @@
    {:brand "Earthquaker devices" :model "Sea Machine" :distributor false :isolator true :adapter true :comment "ACA-AOK"}
    {:brand "Earthquaker devices" :model "Sound Shank" :distributor false :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Speaker Cranker" :distributor true :isolator true :adapter false}
-   {:brand "Earthquaker devices" :model "Tone Job" :distributor false :isolator true :adapter true :comment "Doubler"}
+   {:brand "Earthquaker devices" :model "Tone Job" :distributor false :isolator true :adapter :doubler}
    {:brand "Earthquaker devices" :model "the Warden" :distributor false :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "White Light" :distributor false :isolator true :adapter false}
    {:brand "Earthquaker devices" :model "Zap Machine" :distributor true :isolator true :adapter false}
@@ -294,9 +294,9 @@
    {:brand "Electro-Harmonix" :model "Enigma" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Epitome" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Expression pedal" :distributor true :isolator true :adapter false}
-   {:brand "Electro-Harmonix" :model "Electric Mistress (original green)" :distributor false :isolator false :adapter true :comment "Doubler + mini jack adapter"}
+   {:brand "Electro-Harmonix" :model "Electric Mistress (original green)" :distributor false :isolator false :adapter :doubler :comment "Doubler + mini jack adapter"}
    {:brand "Electro-Harmonix" :model "EHX Tortion" :distributor true :isolator true :adapter false}
-   {:brand "Electro-Harmonix" :model "Flanger Hoax" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Electro-Harmonix" :model "Flanger Hoax" :distributor false :isolator false :adapter :doubler}
    {:brand "Electro-Harmonix" :model "Freeze" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Frequncey Analyzer" :distributor false :isolator false :adapter false}
    {:brand "Electro-Harmonix" :model "Germanium 4 Big Muff Pi" :distributor false :isolator true :adapter false}
@@ -304,7 +304,7 @@
    {:brand "Electro-Harmonix" :model "Glove" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Graphic Fuzz" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Good Vibes" :distributor true :isolator true :adapter false}
-   {:brand "Electro-Harmonix" :model "HOG" :distributor false :isolator false :adapter true :comment "EvenFlo"}
+   {:brand "Electro-Harmonix" :model "HOG" :distributor false :isolator false :adapter :even-flo}
    {:brand "Electro-Harmonix" :model "HOG 2" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Holier Grail" :distributor false :isolator false :adapter :time-lord}
    {:brand "Electro-Harmonix" :model "Holiest Grail" :distributor false :isolator false :adapter :time-lord}
@@ -340,7 +340,7 @@
    {:brand "Electro-Harmonix" :model "Octavix" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Pan Pedal" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Pocket Metal Muff" :distributor true :isolator true :adapter false}
-   {:brand "Electro-Harmonix" :model "POG" :distributor false :isolator false :adapter true :comment "Doubler + Line6 cable adapter"}
+   {:brand "Electro-Harmonix" :model "POG" :distributor false :isolator false :adapter :doubler :comment "Doubler + Line6 cable adapter"}
    {:brand "Electro-Harmonix" :model "POG 2" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Pulsar" :distributor true :isolator true :adapter false}
    {:brand "Electro-Harmonix" :model "Q-Tron" :distributor false :isolator false :adapter true :comment "ElectroMan"}
@@ -372,7 +372,7 @@
    {:brand "Electro-Harmonix" :model "Tube E.Q" :distributor false :isolator false :adapter false}
    {:brand "Electro-Harmonix" :model "Tube Zipper" :distributor false :isolator false :adapter false}
    {:brand "Electro-Harmonix" :model "Turnip Greens" :distributor false :isolator false :adapter :time-lord}
-   {:brand "Electro-Harmonix" :model "The POG" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Electro-Harmonix" :model "The POG" :distributor false :isolator false :adapter :doubler}
    {:brand "Electro-Harmonix" :model "The Wiggler" :distributor false :isolator false :adapter false}
    {:brand "Electro-Harmonix" :model "The Worm" :distributor false :isolator false :adapter true :comment "ElectroMan"}
    {:brand "Electro-Harmonix" :model "Tube EQ" :distributor false :isolator false :adapter false}
@@ -389,27 +389,27 @@
    {:brand "EMMA" :model "TM-1 TransMORGrifier" :distributor true :isolator true :adapter false}
    {:brand "Empress" :model "Buffer" :distributor true :isolator true :adapter false}
    {:brand "Empress" :model "Buffer+" :distributor true :isolator true :adapter false}
-   {:brand "Empress" :model "Compressor" :distributor true :isolator true :adapter true :comment "Doubler"}
+   {:brand "Empress" :model "Compressor" :distributor true :isolator true :adapter :doubler}
    {:brand "Empress" :model "Distortion" :distributor true :isolator true :adapter false}
    {:brand "Empress" :model "Fuzz" :distributor true :isolator true :adapter false}
    {:brand "Empress" :model "Germ Drive" :distributor true :isolator true :adapter false}
    {:brand "Empress" :model "Heavy" :distributor true :isolator true :adapter true :comment "SupaNova"}
    {:brand "Empress" :model "MIDIbox" :distributor true :isolator true :adapter true :comment "SupaNova"}
-   {:brand "Empress" :model "Multidrive" :distributor true :isolator true :adapter true :comment "Doubler"}
+   {:brand "Empress" :model "Multidrive" :distributor true :isolator true :adapter :doubler}
    {:brand "Empress" :model "Nebulus" :distributor false :isolator false :adapter true :comment "SupaNova"}
    {:brand "Empress" :model "ParaEQ w/Boost" :distributor true :isolator true :adapter false}
    {:brand "Empress" :model "Super Delay" :distributor false :isolator false :adapter true :comment "SupaNova Plus Reverse Polarity Adaptor"}
    {:brand "Empress" :model "Vintage Modified Super Delay" :distributor false :isolator false :adapter true :comment "SupaNova Plus Reverse Polarity Adaptor"}
-   {:brand "Empress" :model "Tape Delay" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Empress" :model "Tape Delay" :distributor false :isolator false :adapter :doubler}
    {:brand "Empress" :model "Tap Tremolo" :distributor true :isolator true :adapter false}
-   {:brand "Empress" :model "Phaser" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Eventide" :model "ModFactor" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Eventide" :model "PitchFactor" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Eventide" :model "TimeFactor" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Eventide" :model "Space" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Eventide" :model "H9 Core" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Eventide" :model "H9" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Eventide" :model "H9 Max" :distributor false :isolator false :adapter true :comment "EvenFlo"}
+   {:brand "Empress" :model "Phaser" :distributor true :isolator true :adapter :doubler}
+   {:brand "Eventide" :model "ModFactor" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Eventide" :model "PitchFactor" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Eventide" :model "TimeFactor" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Eventide" :model "Space" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Eventide" :model "H9 Core" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Eventide" :model "H9" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Eventide" :model "H9 Max" :distributor false :isolator false :adapter :even-flo}
    {:brand "Fairfield Circuitry" :model "The Barbershop" :distributor true :isolator true :adapter false}
    {:brand "Fairfield Circuitry" :model "Randy's Revenge" :distributor false :isolator true :adapter false}
    {:brand "Fairfield Circuitry" :model "Four Eyes" :distributor true :isolator true :adapter false}
@@ -421,7 +421,7 @@
    {:brand "Foxrox" :model "Octron" :distributor true :isolator true :adapter false}
    {:brand "Foxrox" :model "Festival Overdrive" :distributor true :isolator true :adapter false}
    {:brand "Foxrox" :model "AquaVibe" :distributor false :isolator false :adapter :time-lord}
-   {:brand "Foxrox" :model "Paradox TZF2" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Foxrox" :model "Paradox TZF2" :distributor false :isolator false :adapter :doubler}
    {:brand "Foxrox" :model "Hot Silcon Fuzz" :distributor true :isolator true :adapter false}
    {:brand "Foxrox" :model "CC Hybrid" :distributor true :isolator true :adapter false}
    {:brand "Foxrox" :model "ZIM" :distributor true :isolator true :adapter false}
@@ -436,7 +436,7 @@
    {:brand "Fulltone" :model "Fat Boost 2 (FB-2)" :distributor true :isolator true :adapter false}
    {:brand "Fulltone" :model "Full Drive 2 Mosfet" :distributor true :isolator true :adapter false}
    {:brand "Fulltone" :model "Full Drive 2 (Non Mosfet)" :distributor true :isolator true :adapter false}
-   {:brand "Fulltone" :model "Full Drive 3" :distributor true :isolator true :adapter true :comment "Doubler"}
+   {:brand "Fulltone" :model "Full Drive 3" :distributor true :isolator true :adapter :doubler}
    {:brand "Fulltone" :model "GT-500" :distributor true :isolator true :adapter false}
    {:brand "Fulltone" :model "Mini Deja Vibe" :distributor true :isolator true :adapter false}
    {:brand "Fulltone" :model "OCD" :distributor true :isolator true :adapter false}
@@ -506,7 +506,7 @@
    {:brand "Guyatone" :model "VT-X Vintage Tremolo" :distributor false :isolator false :adapter true :comment "SupaNova"}
    {:brand "Guyatone" :model "WR-3 Wah Rocker" :distributor true :isolator true :adapter false}
    {:brand "Hartman" :model "Analog Flanger" :distributor true :isolator true :adapter false}
-   {:brand "Hartman" :model "Envelope Filter" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Hartman" :model "Envelope Filter" :distributor false :isolator false :adapter :doubler}
    {:brand "HEXE guitar Electronics" :model "Bitcrusher III" :distributor true :isolator true :adapter false}
    {:brand "HEXE guitar Electronics" :model "Drive Masala" :distributor true :isolator true :adapter false}
    {:brand "HEXE guitar Electronics" :model "Fire Starter III" :distributor true :isolator true :adapter false}
@@ -533,14 +533,14 @@
    {:brand "Homebrew Electronics" :model "THC (Three Hound Chorus)" :distributor true :isolator true :adapter false}
    {:brand "Homebrew Electronics" :model "Ultimate Fuzz Octave" :distributor false :isolator true :adapter false}
    {:brand "Homebrew Electronics" :model "Uno Mos/Bajo Mos" :distributor true :isolator true :adapter false}
-   {:brand "Ibanez" :model "AD80 Analog Delay" :distributor false :isolator false :adapter true :comment "Doubler + Mini Jack cable adapter"}
+   {:brand "Ibanez" :model "AD80 Analog Delay" :distributor false :isolator false :adapter :doubler :comment "Doubler + Mini Jack cable adapter"}
    {:brand "Ibanez" :model "AD9 Analog Delay" :distributor true :isolator true :adapter false}
    {:brand "Ibanez" :model "AD99 Analog Delay" :distributor true :isolator true :adapter false}
    {:brand "Ibanez" :model "AW7 Autowah" :distributor true :isolator true :adapter false}
    {:brand "Ibanez" :model "BC9 Bi Mode Chorus" :distributor true :isolator true :adapter false}
    {:brand "Ibanez" :model "CF7 Chorus/Flanger" :distributor true :isolator true :adapter false}
    {:brand "Ibanez" :model "CP10 Compressor" :distributor true :isolator true :adapter false}
-   {:brand "Ibanez" :model "CS505 Stereo Chorus" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Ibanez" :model "CS505 Stereo Chorus" :distributor false :isolator false :adapter :doubler}
    {:brand "Ibanez" :model "CS9 Stereo Chorus" :distributor true :isolator true :adapter false}
    {:brand "Ibanez" :model "DE7 Delay/Echo" :distributor true :isolator true :adapter false}
    {:brand "Ibanez" :model "DL5 Digital Delay" :distributor true :isolator true :adapter false}
@@ -598,12 +598,12 @@
    {:brand "JHS" :model "Bun-Runner" :distributor true :isolator true :adapter false}
    {:brand "JHS" :model "Blender" :distributor true :isolator true :adapter false}
    {:brand "JHS" :model "Charlie Brown" :distributor true :isolator true :adapter false}
-   {:brand "JHS" :model "Colour Box" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "JHS" :model "Colour Box" :distributor false :isolator false :adapter :doubler}
    {:brand "JHS" :model "Double Barrel" :distributor true :isolator true :adapter false}
    {:brand "JHS" :model "Firefly" :distributor true :isolator true :adapter false}
    {:brand "JHS" :model "Honey Comb Deluxe" :distributor true :isolator true :adapter false}
    {:brand "JHS" :model "The Kilt" :distributor true :isolator true :adapter false}
-   {:brand "JHS" :model "JHS-808" :distributor true :isolator true :adapter true :comment "Doubler"}
+   {:brand "JHS" :model "JHS-808" :distributor true :isolator true :adapter :doubler}
    {:brand "JHS" :model "Lime Aid" :distributor true :isolator true :adapter false}
    {:brand "JHS" :model "Low Drive" :distributor true :isolator true :adapter false}
    {:brand "JHS" :model "Morning Glory" :distributor true :isolator true :adapter false}
@@ -648,9 +648,9 @@
    {:brand "Keeley" :model "Time Machine Boost" :distributor true :isolator true :adapter false}
    {:brand "Keeley" :model "war Ensemble" :distributor true :isolator true :adapter false}
    {:brand "Keeley" :model "White Sands" :distributor true :isolator true :adapter false}
-   {:brand "KORG" :model "KP1 KAOSS Pad" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "KORG" :model "KP2 KAOSS Pad" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "KORG" :model "KP3 KAOSS Pad" :distributor false :isolator false :adapter true :comment "Doubler + reverse polarity cable adapter"}
+   {:brand "KORG" :model "KP1 KAOSS Pad" :distributor false :isolator false :adapter :doubler}
+   {:brand "KORG" :model "KP2 KAOSS Pad" :distributor false :isolator false :adapter :doubler}
+   {:brand "KORG" :model "KP3 KAOSS Pad" :distributor false :isolator false :adapter :doubler :comment "Doubler + reverse polarity cable adapter"}
    {:brand "KORG" :model "Pitchblack Tuner PB01" :distributor true :isolator true :adapter false}
    {:brand "KORG" :model "Pitchblack+ Tuner PB02" :distributor true :isolator true :adapter false}
    {:brand "Kingsley" :model "Jester v1" :distributor false :isolator false :adapter false}
@@ -671,11 +671,11 @@
    {:brand "Lehle" :model "Sunday Driver XLR" :distributor true :isolator true :adapter false}
    {:brand "Lehle" :model "Parallel M" :distributor true :isolator true :adapter false}
    {:brand "Lehle" :model "Parallel L" :distributor true :isolator true :adapter false}
-   {:brand "Line6" :model "AM4" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Line6" :model "DL4" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Line6" :model "DM4" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Line6" :model "FM4" :distributor false :isolator false :adapter true :comment "EvenFlo"}
-   {:brand "Line6" :model "MM4" :distributor false :isolator false :adapter true :comment "EvenFlo"}
+   {:brand "Line6" :model "AM4" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Line6" :model "DL4" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Line6" :model "DM4" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Line6" :model "FM4" :distributor false :isolator false :adapter :even-flo}
+   {:brand "Line6" :model "MM4" :distributor false :isolator false :adapter :even-flo}
    {:brand "Line6" :model "M5" :distributor false :isolator false :adapter :time-lord}
    {:brand "Line6" :model "M9" :distributor false :isolator false :adapter true :comment "Line6 Cable adapter and all other pedals MUST be isolated"}
    {:brand "Line6" :model "M13" :distributor false :isolator false :adapter true :comment "Line6 Cable adapter and all other pedals MUST be isolated"}
@@ -795,8 +795,8 @@
    {:brand "Mission engineering" :model "Rewah Pro Bass" :distributor true :isolator true :adapter false}
    {:brand "Mission engineering" :model "Rewah Pro" :distributor true :isolator true :adapter false}
    {:brand "Mission engineering" :model "Rewah st" :distributor true :isolator true :adapter false}
-   {:brand "Mission engineering" :model "Vm-Pro" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Mission engineering" :model "Vm-pro-Pz" :distributor true :isolator true :adapter true :comment "Doubler"}
+   {:brand "Mission engineering" :model "Vm-Pro" :distributor true :isolator true :adapter :doubler}
+   {:brand "Mission engineering" :model "Vm-pro-Pz" :distributor true :isolator true :adapter :doubler}
    {:brand "Mojo Hand" :model "Analogue Filter 443" :distributor true :isolator true :adapter false}
    {:brand "Mojo Hand" :model "Bluebonnet Overdrive" :distributor true :isolator true :adapter false}
    {:brand "Mojo Hand" :model "Colossus Fuzz" :distributor true :isolator true :adapter false}
@@ -862,40 +862,40 @@
    {:brand "MXR" :model "CSP099 Phase 99" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "CSP203 La Machine" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "CSP233 Micro Amp +" :distributor true :isolator true :adapter false}
-   {:brand "MXR" :model "DD11 Dime Distortion" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "MXR" :model "DD11 Dime Distortion" :distributor false :isolator false :adapter :doubler}
    {:brand "MXR" :model "EP101 Echoplex Preamp" :distributor true :isolator true :adapter false}
-   {:brand "MXR" :model "EVH Flanger" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "MXR" :model "EVH117 EVH Flanger" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "MXR" :model "EVH Flanger" :distributor false :isolator false :adapter :doubler}
+   {:brand "MXR" :model "EVH117 EVH Flanger" :distributor false :isolator false :adapter :doubler}
    {:brand "MXR" :model "EVH90 EVH Phase 90" :distributor true :isolator true :adapter false}
-   {:brand "MXR" :model "KFK1 Kerry King 10-Band EQ" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "MXR" :model "KFK1 Kerry King 10-Band EQ" :distributor false :isolator false :adapter :doubler}
    {:brand "MXR" :model "M81 Bass Preamp" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M101 Phase 90" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M102 Dyna Comp" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M103 Blue Box" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M104 Distortion+" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M107 Phase 100" :distributor true :isolator true :adapter false}
-   {:brand "MXR" :model "M108 10-Band Graphic EQ" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "MXR" :model "M108 10-Band Graphic EQ" :distributor false :isolator false :adapter :doubler}
    {:brand "MXR" :model "M109 6-Band Graphic EQ" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M115 Distortion III" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M116 Fullbore Metal" :distributor true :isolator true :adapter false}
-   {:brand "MXR" :model "M117 Flanger" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "MXR" :model "M117 Flanger" :distributor false :isolator false :adapter :doubler}
    {:brand "MXR" :model "M120 Auto Q Envelope Filter" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M132 Super Comp" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M133 Micro Amp" :distributor true :isolator true :adapter false}
-   {:brand "MXR" :model "M134 Stereo Chorus" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "MXR" :model "M134 Stereo Chorus" :distributor false :isolator false :adapter :doubler}
    {:brand "MXR" :model "M135 Smart Gate Noise Gate" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M148 Micro Chorus" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M152 Micro Flanger" :distributor true :isolator true :adapter false}
-   {:brand "MXR" :model "M159 Stereo Tremolo" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "MXR" :model "M159 Stereo Tremolo" :distributor false :isolator false :adapter :doubler}
    {:brand "MXR" :model "M169 Carbon Copy Analog Delay" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M173 Classic 108 Fuzz" :distributor true :isolator true :adapter false}
-   {:brand "MXR" :model "M181 Bass Blow Torch Distortion" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "MXR" :model "M181 Bass Blow Torch Distortion" :distributor false :isolator false :adapter :doubler}
    {:brand "MXR" :model "M182 El Grande Bass Fuzz" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M188 Bass Auto Q" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M193 GT-OD Overdrive" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M195 Noise Clamp" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M234 Analog Chorus" :distributor true :isolator true :adapter false}
-   {:brand "MXR" :model "M235 Smart Gate Pro" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "MXR" :model "M235 Smart Gate Pro" :distributor false :isolator false :adapter :doubler}
    {:brand "MXR" :model "M264 FET Driver" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M288 Bass Octave" :distributor true :isolator true :adapter false}
    {:brand "MXR" :model "M288 Bass Octave Deluxe" :distributor true :isolator true :adapter false}
@@ -937,18 +937,18 @@
    {:brand "Nobels" :model "SPX 31 Signal Splitter and Mixer" :distributor true :isolator true :adapter false}
    {:brand "Nobels" :model "TRX- Tremelo" :distributor true :isolator true :adapter false}
    {:brand "Origin Effects" :model "Cali76" :distributor true :isolator true :adapter false}
-   {:brand "Origin Effects" :model "Cali76-STD" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "Cali76 STD-TX-P" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "Cali-G" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "Cali76-G-P" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "Cali76-TFALSE" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "Cali76-TX-L" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "SlideRIG" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "Cali76-C" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "Cali76-CD" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "SlideRIG-C" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "SlideRIG-CD" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Origin Effects" :model "Cali76-CB" :distributor true :isolator true :adapter true :comment "Doubler"}
+   {:brand "Origin Effects" :model "Cali76-STD" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "Cali76 STD-TX-P" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "Cali-G" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "Cali76-G-P" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "Cali76-TFALSE" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "Cali76-TX-L" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "SlideRIG" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "Cali76-C" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "Cali76-CD" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "SlideRIG-C" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "SlideRIG-CD" :distributor true :isolator true :adapter :doubler}
+   {:brand "Origin Effects" :model "Cali76-CB" :distributor true :isolator true :adapter :doubler}
    {:brand "Paul Cochraine" :model "Tim" :distributor true :isolator true :adapter false}
    {:brand "Paul Cochraine" :model "Timmy" :distributor true :isolator true :adapter false}
    {:brand "Pedal Monsters" :model "Mad Hatter" :distributor true :isolator true :adapter false}
@@ -976,40 +976,40 @@
    {:brand "Pete Cornish" :model "TB-83 Extra Duplex" :distributor true :isolator true :adapter false}
    {:brand "Petersen" :model "Strobo Stomp 2" :distributor true :isolator true :adapter false}
    {:brand "Petersen" :model "StroboFlip Compact Virtual Strobe Tuner" :distributor false :isolator false :adapter false}
-   {:brand "Pigtronix" :model "Aria" :distributor false :isolator true :adapter true :comment "Doubler"}
+   {:brand "Pigtronix" :model "Aria" :distributor false :isolator true :adapter :doubler}
    {:brand "Pigtronix" :model "Attack Sustain" :distributor false :isolator false :adapter true :comment "ElPaso + reverse polarity cable adapetr"}
-   {:brand "Pigtronix" :model "Bass Envelope Phaser" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Bass Station" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Bass Fat Boost" :distributor false :isolator true :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Class A Boost" :distributor false :isolator true :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "D'Angelico II" :distributor false :isolator true :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "D'Angelico New York" :distributor false :isolator true :adapter true :comment "Doubler"}
+   {:brand "Pigtronix" :model "Bass Envelope Phaser" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Bass Station" :distributor true :isolator true :adapter :doubler}
+   {:brand "Pigtronix" :model "Bass Fat Boost" :distributor false :isolator true :adapter :doubler}
+   {:brand "Pigtronix" :model "Class A Boost" :distributor false :isolator true :adapter :doubler}
+   {:brand "Pigtronix" :model "D'Angelico II" :distributor false :isolator true :adapter :doubler}
+   {:brand "Pigtronix" :model "D'Angelico New York" :distributor false :isolator true :adapter :doubler}
    {:brand "Pigtronix" :model "Disnortion" :distributor false :isolator false :adapter true :comment "ElPaso + reverse polarity cable adapetr"}
-   {:brand "Pigtronix" :model "Nova Disnortion" :distributor true :isolator true :adapter true :comment "Doubler"}
+   {:brand "Pigtronix" :model "Nova Disnortion" :distributor true :isolator true :adapter :doubler}
    {:brand "Pigtronix" :model "Echolution" :distributor false :isolator false :adapter true :comment "ElPaso + reverse polarity cable adapetr"}
    {:brand "Pigtronix" :model "Echolution Chrome" :distributor false :isolator false :adapter true :comment "ElPaso + reverse polarity cable adapetr"}
-   {:brand "Pigtronix" :model "Echolution 2" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Echolution 2 Deluxe" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Echolution 2 Ultra Pro" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Echolution 2 Filter Pro" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Pigtronix" :model "Echolution 2" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Echolution 2 Deluxe" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Echolution 2 Ultra Pro" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Echolution 2 Filter Pro" :distributor false :isolator false :adapter :doubler}
    {:brand "Pigtronix" :model "EP-1 Envelope Phaser" :distributor false :isolator false :adapter true :comment "ElPaso + reverse polarity cable adapetr"}
-   {:brand "Pigtronix" :model "Bernie Worrell Signature Envelope Phaser" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Fat Drive" :distributor false :isolator true :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Gate Keeper" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Keymaster" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Philosopher bass compressor" :distributor false :isolator true :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Philosophers tone" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Pigtronix" :model "Bernie Worrell Signature Envelope Phaser" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Fat Drive" :distributor false :isolator true :adapter :doubler}
+   {:brand "Pigtronix" :model "Gate Keeper" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Keymaster" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Philosopher bass compressor" :distributor false :isolator true :adapter :doubler}
+   {:brand "Pigtronix" :model "Philosophers tone" :distributor false :isolator false :adapter :doubler}
    {:brand "Pigtronix" :model "Philosophers tone Germanium Gold LTD" :distributor true :isolator true :adapter false}
-   {:brand "Pigtronix" :model "Philosopher king" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Philosopher's Rock" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Quantum time Modulator" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Pigtronix" :model "Philosopher king" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Philosopher's Rock" :distributor true :isolator true :adapter :doubler}
+   {:brand "Pigtronix" :model "Quantum time Modulator" :distributor false :isolator false :adapter :doubler}
    {:brand "Pigtronix" :model "PolySaturator" :distributor true :isolator true :adapter false}
-   {:brand "Pigtronix" :model "Rototron" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Tremvelope" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Mothership" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "Infinty Looper" :distributor false :isolator false :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "XL Fat Drive" :distributor true :isolator true :adapter true :comment "Doubler"}
-   {:brand "Pigtronix" :model "War Hog" :distributor false :isolator false :adapter true :comment "Doubler"}
+   {:brand "Pigtronix" :model "Rototron" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Tremvelope" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Mothership" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "Infinty Looper" :distributor false :isolator false :adapter :doubler}
+   {:brand "Pigtronix" :model "XL Fat Drive" :distributor true :isolator true :adapter :doubler}
+   {:brand "Pigtronix" :model "War Hog" :distributor false :isolator false :adapter :doubler}
    {:brand "ProCo" :model "DeuceTone Rat" :distributor true :isolator true :adapter false}
    {:brand "ProCo" :model "Juggernaut Bass Rat" :distributor true :isolator true :adapter false}
    {:brand "ProCo" :model "Rat 2" :distributor true :isolator true :adapter false}

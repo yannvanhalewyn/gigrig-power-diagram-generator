@@ -30,3 +30,9 @@
 
 (defn time-lord [props]
   (boxed-text-data (merge props {:text "Time Lord" :background "#225678" :size 4})))
+
+(defn even-flo [props]
+  (boxed-text-data (merge props {:text "Even Flo" :background "#078" :size 4})))
+
+(defn doubler [props]
+  (boxed-text-data (merge props {:text "Doubler" :background "#972" :size 4})))

@@ -136,6 +136,11 @@
                  (ptree/build (isolator-pedals 4))))))
 
 (deftest build-adapters
-  (testing "1 pedal with adapter"
+  (testing "1 pedal with timelord"
     (is (eql-zip [:distributor [[:time-lord [[:pedal "pedal1"]]]] nil]
-                 (ptree/build [(timelord-pedal 1)])))))
+                 (ptree/build [(timelord-pedal 1)]))))
+
+  (testing "Other adapters"
+    (is (eql-zip [:distributor [[:even-flo [[:pedal "pedal1"]]] [:doubler [[:pedal "pedal2"]]]] nil]
+                 (ptree/build [{:adapter :even-flo :model "pedal1"}
+                               {:adapter :doubler :model "pedal2"}])))))

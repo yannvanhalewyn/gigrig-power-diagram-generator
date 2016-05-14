@@ -21,7 +21,9 @@
     :pedal (btd/pedal (gzip/box-meta loc) {:x x :y y})
     :isolator (btd/isolator {:x x :y y})
     :distributor (btd/distributor {:x x :y y})
-    :time-lord (btd/time-lord {:x x :y y})))
+    :time-lord (btd/time-lord {:x x :y y})
+    :even-flo (btd/even-flo {:x x :y y})
+    :doubler (btd/doubler {:x x :y y})))
 
 (defn- adapter?
   "Returns true if location is an adaptor type. eg: Timelord, Doubler, etc.."
