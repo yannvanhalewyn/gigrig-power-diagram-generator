@@ -32,6 +32,9 @@
   ([from to] (for [i (range from (inc to))]
                (isolator-pedal i))))
 
+(defn insert-times [base x]
+  (reduce #(ptree/insert %1 [:pedal (str "pedal" %2)]) base (range 1 (inc x))))
+
 (defn timelord-pedal [n]
   {:brand "X"
    :model (str "pedal" n)
@@ -56,36 +59,23 @@
     (is (eql-zip [:distributor [[:pedal "pedal1"]] nil]
                  (ptree/insert root [:pedal "pedal1"])))
     (is (eql-zip [:distributor [[:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:pedal "pedal6"]] nil]
-                 (-> root
-                     (ptree/insert [:pedal "pedal1"])
-                     (ptree/insert [:pedal "pedal2"])
-                     (ptree/insert [:pedal "pedal3"])
-                     (ptree/insert [:pedal "pedal4"])
-                     (ptree/insert [:pedal "pedal5"])
-                     (ptree/insert [:pedal "pedal6"]))))
+                 (insert-times root 6)))
     (is (eql-zip [:distributor [[:pedal "pedal1"] [:pedal "pedal2"] [:pedal "pedal3"] [:pedal "pedal4"] [:pedal "pedal5"] [:distributor [[:pedal "pedal6"] [:pedal "pedal7"]] nil]] nil]
-                 (-> root
-                     (ptree/insert [:pedal "pedal1"])
-                     (ptree/insert [:pedal "pedal2"])
-                     (ptree/insert [:pedal "pedal3"])
-                     (ptree/insert [:pedal "pedal4"])
-                     (ptree/insert [:pedal "pedal5"])
-                     (ptree/insert [:pedal "pedal6"])
-                     (ptree/insert [:pedal "pedal7"]))))
-    (is (= [:distributor [[:pedal "pedal1"]
-                          [:pedal "pedal2"]
-                          [:pedal "pedal3"]
-                          [:pedal "pedal4"]
-                          [:pedal "pedal5"]
-                          [:distributor [[:pedal "pedal6"]
-                                         [:pedal "pedal7"]
-                                         [:pedal "pedal8"]
-                                         [:pedal "pedal9"]
-                                         [:pedal "pedal10"]
-                                         [:distributor [[:pedal "pedal11"] [:pedal "pedal12"]] nil]]
-                           nil]]
-            nil]
-           (zip/root (ptree/insert (ptree/build (distributor-pedals 11)) [:pedal "pedal12"]))))
+                 (insert-times root 7)))
+    (is (eql-zip [:distributor [[:pedal "pedal1"]
+                                [:pedal "pedal2"]
+                                [:pedal "pedal3"]
+                                [:pedal "pedal4"]
+                                [:pedal "pedal5"]
+                                [:distributor [[:pedal "pedal6"]
+                                               [:pedal "pedal7"]
+                                               [:pedal "pedal8"]
+                                               [:pedal "pedal9"]
+                                               [:pedal "pedal10"]
+                                               [:distributor [[:pedal "pedal11"] [:pedal "pedal12"]] nil]]
+                                 nil]]
+                  nil]
+                 (insert-times root 12)))
     (is (eql-zip [:distributor [[:pedal "pedal1"] [:isolator [:pedal "pedal2"]]] nil]
                  (-> root
                      (ptree/insert [:pedal "pedal1"])
