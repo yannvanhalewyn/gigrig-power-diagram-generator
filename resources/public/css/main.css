@@ -3,6 +3,7 @@
 
 body {
   background: #f2f2f2;
+  font-family: Verdana;
   margin: 0; }
 
 h1 {
@@ -13,17 +14,22 @@ h1 {
   text-shadow: 0 0.2px 0.3px black;
   margin-top: 60px; }
 
-/* Search field */
-.pedal-search {
+.pedal-search-outer {
   text-align: center;
   margin-bottom: 35px; }
+
+.pedal-search {
+  width: 500px;
+  position: relative;
+  margin: auto auto; }
 
 .pedal-search__input {
   font-size: 1.2em;
   padding: 10px 15px;
   border: 1px solid #aaa;
   border-radius: 4px;
-  width: 300px;
+  width: 100%;
+  font-family: Verdana;
   background-image: url("../svg/magnifier.svg");
   background-repeat: no-repeat;
   background-position: 95% 50%; }
@@ -32,10 +38,42 @@ h1 {
 .pedal-search__input:focus {
   outline: none; }
 
-/* Selected pedals */
+.suggestions-dropdown {
+  position: absolute;
+  z-index: 100;
+  width: 500px;
+  max-height: 400px;
+  overflow: scroll;
+  top: 29px;
+  list-style: none;
+  box-shadow: 3px 3px 13px black;
+  padding: 0; }
+
+.suggestion {
+  padding: 30px 10px;
+  background: #935959;
+  color: white;
+  cursor: pointer; }
+  .suggestion:nth-child(even) {
+    background-color: #935959; }
+    .suggestion:nth-child(even):hover {
+      background-color: #734646; }
+  .suggestion:nth-child(odd) {
+    background-color: #55222E; }
+    .suggestion:nth-child(odd):hover {
+      background-color: #533333; }
+
+.suggestion__model {
+  float: left;
+  font-family: Verdana; }
+
+.suggestion__brand {
+  float: right;
+  color: #FCFCFC; }
+
 .selected-pedals {
-  background-color: #935959;
-  min-height: 80px; }
+  min-height: 80px;
+  background-color: #935959; }
 
 .selected-pedal, .selected-pedal--red {
   font-family: Verdana;

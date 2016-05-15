@@ -1,9 +1,14 @@
+$searchfield-width: 500px;
+$light-red: #935959;
+$dark-red: #55222E;
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
 
 body {
   background: #f2f2f2;
+  font-family: Verdana;
   margin: 0;
 }
 
@@ -16,10 +21,16 @@ h1 {
   margin-top: 60px;
 }
 
-/* Search field */
-.pedal-search {
+// Search field
+.pedal-search-outer {
   text-align: center;
   margin-bottom: 35px;
+}
+
+.pedal-search {
+  width: $searchfield-width;
+  position: relative;
+  margin: auto auto;
 }
 
 .pedal-search__input {
@@ -27,7 +38,8 @@ h1 {
   padding: 10px 15px;
   border: 1px solid #aaa;
   border-radius: 4px;
-  width: 300px;
+  width: 100%;
+  font-family: Verdana;
   background-image: url("../svg/magnifier.svg");
   background-repeat: no-repeat;
   background-position: 95% 50%;
@@ -38,10 +50,52 @@ h1 {
   outline: none;
 }
 
-/* Selected pedals */
+// Suggestions dropdown
+.suggestions-dropdown {
+  position: absolute;
+  z-index: 100;
+  width: $searchfield-width;
+  max-height: 400px;
+  overflow: scroll;
+  top: 29px;
+  list-style: none;
+  box-shadow: 3px 3px 13px black;
+  padding: 0;
+}
+
+.suggestion {
+  padding: 30px 10px;
+  background: $light-red;
+  color: white;
+  cursor: pointer;
+  &:nth-child(even) {
+    background-color: $light-red;
+    &:hover {
+      background-color: darken($light-red, 10);
+    }
+  }
+  &:nth-child(odd) {
+    background-color: $dark-red;
+    &:hover {
+      background-color: darken($light-red, 20);
+    }
+  }
+}
+
+.suggestion__model {
+  float: left;
+  font-family: Verdana;
+}
+
+.suggestion__brand {
+  float: right;
+  color: #FCFCFC;
+}
+
+// Selected pedals
 .selected-pedals {
-  background-color: #935959;
   min-height: 80px;
+  background-color: $light-red;
 }
 
 .selected-pedal {
