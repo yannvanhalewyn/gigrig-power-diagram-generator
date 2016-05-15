@@ -102,4 +102,9 @@ h1 {
   bottom: 3px;
   cursor: pointer; }
 
+.diagram {
+  margin-top: 40px; }
+  .diagram svg {
+    width: 100%; }
+
 /*# sourceMappingURL=main.css.map */

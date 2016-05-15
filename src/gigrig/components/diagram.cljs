@@ -43,11 +43,10 @@
   "The main diagram component. Takes in the zipper tree and renders
   the entire power suplly diagram as an svg"
   [{:keys [zipper]}]
-  (let [generator (btd/generator {:x 10 :y 0})]
-    [:div
+  (let [generator (btd/generator {:x 60 :y 0})]
+    [:div.diagram
      (when (zip/down zipper)
-       [:h1 "DIAGRAM"]
-       [:svg {:view-box "0 0 250 250"
+       [:svg {:view-box "0 0 200 200"
               :width "1200"
               :height "1200"}
         [boxes/boxed-text generator]
