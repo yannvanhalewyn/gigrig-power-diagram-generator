@@ -3,16 +3,22 @@
             [gigrig.components.boxes :as boxes]
             [gigrig.geometry.line :as line]
             [gigrig.zipper :as gzip]
+            [reagent.core :as reagent]
             [clojure.zip :as zip :refer [children]]))
 
 (declare tree)
 
 (defn- lines
   "Renders an svg group of lines for each line in lines."
-  [lines]
-  [:g {:stroke "black"
-       :stroke-linecap "round"}
-   (for [l lines] ^{:key (line/react-key l)} [:line l])])
+  []
+  (let [highlight (reagent/atom false)]
+    (fn [lines]
+      [:g {:stroke (if @highlight "gold" "black")
+           :stroke-linecap "round"}
+       (for [l lines] ^{:key (line/react-key l)} [:line (merge
+                                                         {:on-mouse-enter #(reset! highlight true)
+                                                          :on-mouse-leave #(reset! highlight false)}
+                                                         l)])])))
 
 (defn- node
   "Renders the node. If it's a branch, it recursively render a new
