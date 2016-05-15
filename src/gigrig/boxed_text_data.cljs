@@ -1,4 +1,5 @@
-(ns gigrig.boxed-text-data)
+(ns gigrig.boxed-text-data
+  (:require [gigrig.constants :refer [ADAPTERS]]))
 
 (defn- boxed-text-data
   "Returns the dimensions and data required to render a boxed text element"
@@ -28,20 +29,6 @@
 (defn pedal [name props]
   (boxed-text-data (merge props {:text name :background "#DCD7B3" :size 3})))
 
-(defn time-lord [props]
-  (boxed-text-data (merge props {:text "Time Lord" :background "#225678" :size 4})))
-
-(defn even-flo [props]
-  (boxed-text-data (merge props {:text "Even Flo" :background "#078" :size 4})))
-
-(defn doubler [props]
-  (boxed-text-data (merge props {:text "Doubler" :background "#972" :size 4})))
-
-(defn vb-bc [props]
-  (boxed-text-data (merge props {:text "VB-BC" :background "#abc" :size 4})))
-
-(defn aca-aok [props]
-  (boxed-text-data (merge props {:text "ACA-AOK" :background "#cba" :size 4})))
-
-(defn unknown [props]
-  (boxed-text-data (merge props {:text "Unknown" :background "#eee" :size 3})))
+(defn adapter [type coords]
+  (let [{:keys [name color] :as a} (some #(if (= type (:key %)) %) ADAPTERS)]
+    (boxed-text-data (merge coords {:text name :background color :size 4} ))))
