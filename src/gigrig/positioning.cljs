@@ -30,6 +30,9 @@
   (some (partial = (gzip/loc-type loc)) (map :key ADAPTERS)))
 
 (defn- children-y
+  "Returns the vertical displacement for new children. Takes into
+  account other siblings that have children and adds extra
+  displacement to prevent collision"
   [loc]
   (let [branches-to-the-right
         (count (filter #(some (partial = (first %)) [:distributor :isolator]) (zip/rights loc)))]
@@ -37,10 +40,22 @@
       ADAPTER-OFFSET
       (+ CHILDREN-OFFSET (* branches-to-the-right CHILD-VERTICAL-STEP)))))
 
+(defn child-x
+  "Returns the x position for a child. Takes into account other
+  siblings and their children"
+  [loc]
+  (max
+   ;; The x value of the right wall of the sibling to the left
+   (box/right (-> loc zip/left gzip/box-meta))
+   ;; The x value of the right wall of the previous sibling's child if adapter
+   (when (adapter? (zip/left loc))
+     (+ 7 (box/right (if-let [child (-> loc zip/left zip/down)]
+                       (-> child gzip/box-meta)))))))
+
 (defn- align
   "Calculates the box data for the given child"
   [loc x y]
-  (let [x (+ CHILD-SPACING (if (= (zip/leftmost loc) loc) x (box/right (-> loc zip/left gzip/box-meta))))
+  (let [x (+ CHILD-SPACING (if (= (zip/leftmost loc) loc) x (child-x loc)))
         new-loc (gzip/set-meta loc (box loc x y))]
     (if (zip/branch? new-loc)
       (emplace new-loc x y)
