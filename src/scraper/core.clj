@@ -56,7 +56,7 @@
    (with-out-str
      (println "(ns gigrig.data)")
      (println "(defonce data")
-     (pr entries)
+     (pr (vec entries))
      (println ")"))))
 
 (defn -main []
