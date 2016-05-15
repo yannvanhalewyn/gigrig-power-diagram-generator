@@ -3,12 +3,9 @@
             [gigrig.actions :as a]))
 
 (defn pedal [{:keys [pedal id]}]
-  [:div
-   [:strong (:model pedal)]
-   [:span (:brand pedal)]
-   [:button {:on-click #(dispatch! a/pedal-removed id)} "x"]])
-
-(defn echo [a] (.log js/console a) a)
+  [:div.selected-pedal
+   [:span (:model pedal)]
+   [:button.selected-pedal__remove {:on-click #(dispatch! a/pedal-removed id)}]])
 
 (defn component [pedals]
   [:div.selected-pedals

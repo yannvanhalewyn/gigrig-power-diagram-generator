@@ -1,18 +1,25 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   background: #f2f2f2;
+  margin: 0;
 }
 
 h1 {
-  text-align: center;
   font-weight: 200;
   font-family: Verdana;
+  text-align: center;
   font-size: 37px;
   text-shadow: 0 0.2px 0.3px black;
   margin-top: 60px;
 }
 
+/* Search field */
 .pedal-search {
   text-align: center;
+  margin-bottom: 35px;
 }
 
 .pedal-search__input {
@@ -31,3 +38,34 @@ h1 {
   outline: none;
 }
 
+/* Selected pedals */
+.selected-pedals {
+  background-color: #935959;
+  min-height: 80px;
+}
+
+.selected-pedal {
+  font-family: Verdana;
+  font-size: 0.9em;
+  background: #355858;
+  color: white;
+  border-radius: 5px;
+  padding: 11px;
+  display: inline-block;
+  margin: 15px;
+  height: 40px;
+}
+
+.selected-pedal__remove {
+  margin-left: 8px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  background-image: url("../svg/cross.svg");
+  background-repeat: no-repeat;
+  background-size: 15px;
+  padding: 9px;
+  position: relative;
+  bottom: 3px;
+  cursor: pointer;
+}
