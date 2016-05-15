@@ -22,18 +22,24 @@
 
 ;; Powertree
 ;; =========
+(def adapters {"TimeLord" :time-lord
+               "Doubler" :doubler
+               "EvenFlo" :even-flo
+               "VB-BC" :vb-bc})
+
+(defn- adapter
+  "Finds an adapter name in the string and returns it as a keyword if any"
+  [s]
+  (some (fn [[name key]] (if (re-find (js/RegExp name) s) key)) adapters))
+
 (defn- simplify
   "returns a hashmap containing the prefered type of the power supply"
   [pedal]
-  (if (:adapter pedal)
+  (let [power (some #(if (% pedal) %) [:adapter :isolator :distributor])
+        adapter (when (and (= :adapter power) (:comment pedal)) (adapter (:comment pedal)))]
     {:name (:model pedal)
-     :power :adapter
-     :adapter (:adapter pedal)}
-    (if (:isolator pedal)
-      {:name (:model pedal)
-       :power :isolator}
-      {:name (:model pedal)
-       :power :distributor})))
+     :power power
+     :adapter adapter}))
 
 (defn- zip-pedal
   "Returns a version of our pedal coherent with our zip model."

@@ -40,16 +40,29 @@
    :model (str "pedal" n)
    :distributor true
    :isolator true
-   :adapter :time-lord})
+   :adapter :true
+   :comment "This is a TimeLord"})
 
 (def tonehammer
-  {:brand "Aguilar" :model "Tonehammer" :distributor false :isolator false :other true :comment "Doubler"})
+  {:brand "Aguilar" :model "Tonehammer" :distributor false :isolator false :adapter true :comment "Doubler"})
+
+(def boomarang
+  {:brand "Boomarang ", :model "E-155 Chorus/Delay", :distributor false, :isolator false, :adapter true, :comment "EvenFlo"})
+
+(def chicago-iron
+  {:brand "Chicago Iron", :model "Tycobrahe Octiavia", :distributor false, :isolator true, :adapter true, :comment "VB-BC"})
+
+(def fuzz-factory
+  {:brand "ZVEX", :model "Fuzz Factory", :distributor true, :isolator true, :adapter false, :comment "if no DC input use VB-BC"})
 
 (deftest simplify
-  (is (= {:power :distributor :name "Tonehammer"} (ptree/simplify tonehammer)))
-  (is (= {:power :distributor :name "pedal1"} (ptree/simplify (distributor-pedal 1))))
-  (is (= {:power :isolator :name "pedal2"} (ptree/simplify (isolator-pedal 2))))
-  (is (= {:power :adapter :name "pedal3" :adapter :time-lord} (ptree/simplify (timelord-pedal 3)))))
+  (is (= {:power :adapter :name "Tonehammer" :adapter :doubler} (ptree/simplify tonehammer)))
+  (is (= {:power :distributor :name "pedal1" :adapter nil} (ptree/simplify (distributor-pedal 1))))
+  (is (= {:power :isolator :name "pedal2" :adapter nil} (ptree/simplify (isolator-pedal 2))))
+  (is (= {:power :adapter :name "pedal3" :adapter :time-lord} (ptree/simplify (timelord-pedal 3))))
+  (is (= {:power :adapter :name "E-155 Chorus/Delay" :adapter :even-flo} (ptree/simplify boomarang)))
+  (is (= {:power :adapter :name "Tycobrahe Octiavia" :adapter :vb-bc} (ptree/simplify chicago-iron)))
+  (is (= {:power :isolator :name "Fuzz Factory" :adapter nil} (ptree/simplify fuzz-factory))))
 
 (defn eql-zip [expected loc]
   (= expected (zip/root loc)))
@@ -142,5 +155,5 @@
 
   (testing "Other adapters"
     (is (eql-zip [:distributor [[:even-flo [[:pedal "pedal1"]]] [:doubler [[:pedal "pedal2"]]]] nil]
-                 (ptree/build [{:adapter :even-flo :model "pedal1"}
-                               {:adapter :doubler :model "pedal2"}])))))
+                 (ptree/build [{:adapter true :model "pedal1" :comment "EvenFlo"}
+                               {:adapter true :model "pedal2" :comment "Doubler if no lala"}])))))
