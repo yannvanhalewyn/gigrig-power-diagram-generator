@@ -1,9 +1,11 @@
 *, *:before, *:after {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 body {
   background: #f2f2f2;
-  margin: 0; }
+  margin: 0;
+}
 
 h1 {
   font-weight: 200;
@@ -11,12 +13,14 @@ h1 {
   text-align: center;
   font-size: 37px;
   text-shadow: 0 0.2px 0.3px black;
-  margin-top: 60px; }
+  margin-top: 60px;
+}
 
 /* Search field */
 .pedal-search {
   text-align: center;
-  margin-bottom: 35px; }
+  margin-bottom: 35px;
+}
 
 .pedal-search__input {
   font-size: 1.2em;
@@ -26,18 +30,21 @@ h1 {
   width: 300px;
   background-image: url("../svg/magnifier.svg");
   background-repeat: no-repeat;
-  background-position: 95% 50%; }
+  background-position: 95% 50%;
+}
 
 .pedal-search__input:active,
 .pedal-search__input:focus {
-  outline: none; }
+  outline: none;
+}
 
 /* Selected pedals */
 .selected-pedals {
   background-color: #935959;
-  min-height: 80px; }
+  min-height: 80px;
+}
 
-.selected-pedal, .selected-pedal--red {
+.selected-pedal {
   font-family: Verdana;
   font-size: 0.9em;
   background: #355858;
@@ -47,10 +54,13 @@ h1 {
   display: inline-block;
   margin: 15px;
   height: 40px;
-  cursor: default; }
+  cursor: default;
+}
 
 .selected-pedal--red {
-  background: #5D1E1E; }
+  @extend .selected-pedal;
+  background: #5D1E1E;
+}
 
 .selected-pedal__remove {
   margin-left: 8px;
@@ -62,6 +72,5 @@ h1 {
   padding: 9px;
   position: relative;
   bottom: 3px;
-  cursor: pointer; }
-
-/*# sourceMappingURL=main.css.map */
+  cursor: pointer;
+}
