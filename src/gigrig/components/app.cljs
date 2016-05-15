@@ -4,6 +4,7 @@
             [gigrig.selectors :as selectors]
             [gigrig.powertree :as ptree]
             [gigrig.components.diagram :as diagram]
+            [gigrig.components.selected-pedals :as selected-pedals]
             [gigrig.positioning :as positioning]
             [gigrig.components.pedal-search :as pedal-search]))
 
@@ -11,10 +12,8 @@
   [state]
   [:div#app
    [:h1 "Power Supply Diagram generator!"]
-   (for [[id field] (:search-fields @state)]
-     ^{:key id}
-     [pedal-search/component (assoc field :id id)])
-   [:button {:on-click #(dispatch! a/add-pedal-button-clicked)} "+ Add pedal"]
+   [pedal-search/component (:search-field @state)]
+   [selected-pedals/component (:selected-pedals @state)]
    [diagram/component {:zipper (-> @state
                                    selectors/selected-pedals
                                    ptree/build
