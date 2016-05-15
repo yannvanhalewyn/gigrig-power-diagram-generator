@@ -7,12 +7,12 @@
             [gigrig.positioning :as positioning]
             [gigrig.components.pedal-search :as pedal-search]))
 
+(def build-tree (memoize #(-> % ptree/build positioning/emplace)))
+
 (defn component
   [state]
   [:div#app
    [:h1 "Power Supply Diagram generator"]
    [pedal-search/component (:search-field @state)]
    [selected-pedals/component (:selected-pedals @state)]
-   [diagram/component {:zipper (-> (:selected-pedals @state)
-                                   ptree/build
-                                   positioning/emplace)}]])
+   [diagram/component {:zipper (build-tree (:selected-pedals @state))}]])
