@@ -69,15 +69,15 @@ h1 {
   color: white;
   cursor: pointer;
   &:nth-child(even) {
-    background-color: $light-red;
+    background-color: $dark-red;
     &:hover {
-      background-color: darken($light-red, 10);
+      background-color: darken($light-red, 17);
     }
   }
   &:nth-child(odd) {
-    background-color: $dark-red;
+    background-color: $light-red;
     &:hover {
-      background-color: darken($light-red, 20);
+      background-color: darken($light-red, 7);
     }
   }
 }
