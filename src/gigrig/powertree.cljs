@@ -1,5 +1,6 @@
 (ns gigrig.powertree
   (:require [gigrig.zipper :as gzip]
+            [gigrig.constants :refer [ADAPTERS]]
             [clojure.zip :as zip]))
 
 ;; Tree
@@ -22,15 +23,10 @@
 
 ;; Powertree
 ;; =========
-(def adapters {"TimeLord" :time-lord
-               "Doubler" :doubler
-               "EvenFlo" :even-flo
-               "VB-BC" :vb-bc})
-
 (defn- adapter
   "Finds an adapter name in the string and returns it as a keyword if any"
   [s]
-  (some (fn [[name key]] (if (re-find (js/RegExp name) s) key)) adapters))
+  (some (fn [[name key]] (if (re-find (js/RegExp name) s) key)) ADAPTERS))
 
 (defn- simplify
   "returns a hashmap containing the prefered type of the power supply"

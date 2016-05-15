@@ -2,6 +2,7 @@
   (:require [gigrig.powertree :as ptree]
             [gigrig.geometry.box :as box]
             [gigrig.boxed-text-data :as btd]
+            [gigrig.constants :refer [ADAPTERS]]
             [clojure.zip :as zip]
             [gigrig.zipper :as gzip]))
 
@@ -23,12 +24,15 @@
     :distributor (btd/distributor {:x x :y y})
     :time-lord (btd/time-lord {:x x :y y})
     :even-flo (btd/even-flo {:x x :y y})
-    :doubler (btd/doubler {:x x :y y})))
+    :doubler (btd/doubler {:x x :y y})
+    :vb-bc (btd/vb-bc {:x x :y y})
+    :aca-aok (btd/aca-aok {:x x :y y})
+    (btd/unknown {:x x :y y})))
 
 (defn- adapter?
   "Returns true if location is an adaptor type. eg: Timelord, Doubler, etc.."
   [loc]
-  (some (partial = (gzip/loc-type loc)) [:time-lord]))
+  (some (partial = (gzip/loc-type loc)) (vals ADAPTERS)))
 
 (defn- children-y
   [loc]

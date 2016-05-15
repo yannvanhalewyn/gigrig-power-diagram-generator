@@ -1,12 +1,13 @@
 (ns gigrig.zipper
-  (:require [clojure.zip :as zip]))
+  (:require [clojure.zip :as zip]
+            [gigrig.constants :refer [GIGRIG-PRODUCTS]]))
 
 ;; Zipper constructors
 ;; ===================
 (defn- branch?
   "Returns true if the node is a distributor or isolator"
   [node]
-  (some (partial = (first node)) [:distributor :isolator :time-lord :even-flo :doubler]))
+  (some (partial = (first node)) GIGRIG-PRODUCTS))
 
 (defn- children
   "Returns all the children of the node"

@@ -36,3 +36,12 @@
 
 (defn doubler [props]
   (boxed-text-data (merge props {:text "Doubler" :background "#972" :size 4})))
+
+(defn vb-bc [props]
+  (boxed-text-data (merge props {:text "VB-BC" :background "#abc" :size 4})))
+
+(defn aca-aok [props]
+  (boxed-text-data (merge props {:text "ACA-AOK" :background "#cba" :size 4})))
+
+(defn unknown [props]
+  (boxed-text-data (merge props {:text "Unknown" :background "#eee" :size 3})))
