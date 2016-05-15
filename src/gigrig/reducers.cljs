@@ -7,6 +7,7 @@
   (case (:type action)
     :init {:query ""}
     :key-pressed (select-keys action [:query :suggestions])
+    :pedal-selected {:query "" :suggestions []}
     state))
 
 (defn- selected-pedals [state action]

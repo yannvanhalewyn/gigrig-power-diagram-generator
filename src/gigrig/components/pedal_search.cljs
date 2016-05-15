@@ -3,13 +3,16 @@
             [reagent.core :as reagent]
             [gigrig.actions :as a]))
 
-(defn- search-field [{:keys [on-focus on-blur handle-change value]}]
+(def ENTER-KEY 13)
+
+(defn- search-field [{:keys [on-focus on-blur value handle-return-key]}]
   [:input.pedal-search__input {:type "text"
                                :placeholder "Search for a pedal..."
-                               :default-value value
+                               :value value
                                :on-focus on-focus
                                :on-blur on-blur 
-                               :on-change #(handle-change (.. % -target -value))}])
+                               :on-key-down #(when (= ENTER-KEY (.. % -keyCode)) (handle-return-key))
+                               :on-change #(dispatch! a/searchfield-key-pressed (.. % -target -value))}])
 
 (defn- suggestion [props]
   [:li.suggestion {:on-mouse-down #(dispatch! a/pedal-selected (:id props))}
@@ -29,6 +32,6 @@
         [search-field {:on-focus #(do (reset! dropdown-visible true) nil)
                        :on-blur #(do (reset! dropdown-visible false) nil)
                        :value (:query props)
-                       :handle-change (fn [val] (dispatch! a/searchfield-key-pressed val))}]
+                       :handle-return-key #(dispatch! a/pedal-selected (-> props :suggestions first :id))}]
         (if @dropdown-visible
           [dropdown {:suggestions (:suggestions props)}])]])))
