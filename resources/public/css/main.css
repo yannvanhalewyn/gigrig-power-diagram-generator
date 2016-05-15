@@ -1,0 +1,33 @@
+body {
+  background: #f2f2f2;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 200;
+  font-family: Verdana;
+  font-size: 37px;
+  text-shadow: 0 0.2px 0.3px black;
+  margin-top: 60px;
+}
+
+.pedal-search {
+  text-align: center;
+}
+
+.pedal-search__input {
+  font-size: 1.2em;
+  padding: 10px 15px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  width: 300px;
+  background-image: url("../svg/magnifier.svg");
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+}
+
+.pedal-search__input:active,
+.pedal-search__input:focus {
+  outline: none;
+}
+

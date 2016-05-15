@@ -4,12 +4,12 @@
             [gigrig.actions :as a]))
 
 (defn- search-field [{:keys [on-focus on-blur handle-change value]}]
-  [:input {:type "text"
-           :placeholder "Search for a pedal"
-           :default-value value
-           :on-focus on-focus
-           :on-blur on-blur 
-           :on-change #(handle-change (.. % -target -value))}])
+  [:input.pedal-search__input {:type "text"
+                               :placeholder "Search for a pedal..."
+                               :default-value value
+                               :on-focus on-focus
+                               :on-blur on-blur 
+                               :on-change #(handle-change (.. % -target -value))}])
 
 (defn- suggestion [props]
   [:li {:on-mouse-down #(dispatch! a/pedal-selected (:id props))}
@@ -24,7 +24,7 @@
 (defn component []
   (let [dropdown-visible (reagent/atom false)]
     (fn [props]
-      [:div
+      [:div.pedal-search
        [search-field {:on-focus #(do (reset! dropdown-visible true) nil)
                       :on-blur #(do (reset! dropdown-visible false) nil)
                       :value (:query props)
