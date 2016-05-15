@@ -1,0 +1,130 @@
+$searchfield-width: 500px;
+$light-red: #935959;
+$dark-red: #55222E;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f2f2f2;
+  font-family: Verdana;
+  margin: 0;
+}
+
+h1 {
+  font-weight: 200;
+  font-family: Verdana;
+  text-align: center;
+  font-size: 37px;
+  text-shadow: 0 0.2px 0.3px black;
+  margin-top: 60px;
+}
+
+// Search field
+.pedal-search-outer {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.pedal-search {
+  width: $searchfield-width;
+  position: relative;
+  margin: auto auto;
+}
+
+.pedal-search__input {
+  font-size: 1.2em;
+  padding: 10px 15px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  width: 100%;
+  font-family: Verdana;
+  background-image: url("../svg/magnifier.svg");
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+}
+
+.pedal-search__input:active,
+.pedal-search__input:focus {
+  outline: none;
+}
+
+// Suggestions dropdown
+.suggestions-dropdown {
+  position: absolute;
+  z-index: 100;
+  width: $searchfield-width;
+  max-height: 400px;
+  overflow: scroll;
+  top: 29px;
+  list-style: none;
+  box-shadow: 3px 3px 13px black;
+  padding: 0;
+}
+
+.suggestion {
+  padding: 30px 10px;
+  background: $light-red;
+  color: white;
+  cursor: pointer;
+  &:nth-child(even) {
+    background-color: $light-red;
+    &:hover {
+      background-color: darken($light-red, 10);
+    }
+  }
+  &:nth-child(odd) {
+    background-color: $dark-red;
+    &:hover {
+      background-color: darken($light-red, 20);
+    }
+  }
+}
+
+.suggestion__model {
+  float: left;
+  font-family: Verdana;
+}
+
+.suggestion__brand {
+  float: right;
+  color: #FCFCFC;
+}
+
+// Selected pedals
+.selected-pedals {
+  min-height: 80px;
+  background-color: $light-red;
+}
+
+.selected-pedal {
+  font-family: Verdana;
+  font-size: 0.9em;
+  background: #355858;
+  color: white;
+  border-radius: 5px;
+  padding: 11px;
+  display: inline-block;
+  margin: 15px;
+  height: 40px;
+  cursor: default;
+}
+
+.selected-pedal--red {
+  @extend .selected-pedal;
+  background: #5D1E1E;
+}
+
+.selected-pedal__remove {
+  margin-left: 8px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../svg/cross.svg");
+  background-repeat: no-repeat;
+  background-size: 15px;
+  padding: 9px;
+  position: relative;
+  bottom: 3px;
+  cursor: pointer;
+}

@@ -21,6 +21,8 @@
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-figwheel "0.5.2"]]
 
+  :figwheel {:css-dirs ["resources/public/css"]}
+
   :cljsbuild {:builds [{:id "dev"
                         :source-paths ["src" "env/dev"]
                         :figwheel {:on-jsload "dev.user/render"}
