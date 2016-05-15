@@ -47,7 +47,7 @@
     [:div
      (when (zip/down zipper)
        [:h1 "DIAGRAM"]
-       [:svg {:view-box "0 0 200 200"
+       [:svg {:view-box "0 0 250 250"
               :width "1200"
               :height "1200"}
         [boxes/boxed-text generator]
