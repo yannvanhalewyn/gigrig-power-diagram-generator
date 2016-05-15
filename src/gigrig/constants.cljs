@@ -1,11 +1,11 @@
 (ns gigrig.constants)
 
-(def ADAPTERS {"TimeLord" :time-lord
-               "Doubler" :doubler
-               "EvenFlo" :even-flo
-               "VB-BC" :vb-bc
-               "ACA-AOK" :aca-aok})
+(def ADAPTERS [{:name "TimeLord" :key :time-lord :color "#225678"}
+               {:name "Doubler"  :key :doubler   :color "#078"}
+               {:name "EvenFlo"  :key :even-flo  :color "#972"}
+               {:name "VB-BC"    :key :vb-bc     :color "#abc"}
+               {:name "ACA-AOK"  :key :aca-aok   :color "#cba"}])
 
 (def BRANCHES [:distributor :isolator])
 
-(def GIGRIG-PRODUCTS (apply conj BRANCHES (vals ADAPTERS)))
+(def GIGRIG-PRODUCTS (apply conj BRANCHES (map :key ADAPTERS)))

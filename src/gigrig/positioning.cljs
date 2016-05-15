@@ -32,7 +32,7 @@
 (defn- adapter?
   "Returns true if location is an adaptor type. eg: Timelord, Doubler, etc.."
   [loc]
-  (some (partial = (gzip/loc-type loc)) (vals ADAPTERS)))
+  (some (partial = (gzip/loc-type loc)) (map :key ADAPTERS)))
 
 (defn- children-y
   [loc]

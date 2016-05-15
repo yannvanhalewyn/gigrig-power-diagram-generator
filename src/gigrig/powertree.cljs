@@ -24,9 +24,12 @@
 ;; Powertree
 ;; =========
 (defn- adapter
-  "Finds an adapter name in the string and returns it as a keyword if any"
-  [s]
-  (some (fn [[name key]] (if (re-find (js/RegExp name) s) key)) ADAPTERS))
+  "Finds an adapter name in the comment string and returns it as a keyword if any"
+  [comment]
+  (some
+   (fn [{:keys [name key]}]
+     (when (re-find (js/RegExp name) comment) key))
+   ADAPTERS))
 
 (defn- simplify
   "returns a hashmap containing the prefered type of the power supply"
