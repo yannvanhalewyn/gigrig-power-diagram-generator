@@ -8,6 +8,8 @@
                  [org.clojure/core.async "0.2.374"]
                  [reagent "0.5.1"]]
 
+  :main scraper.core
+
   :clean-targets ^{:protect false} ["resources/public/js" "target"]
 
   :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.2.1"]

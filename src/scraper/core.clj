@@ -1,5 +1,6 @@
 (ns scraper.core
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str])
+  (:gen-class))
 
 (def url "https://docs.google.com/spreadsheets/d/1XMCStIcX-UkJF2YYmco7mnoSec8I8Vg_1wSSAVR7L00/export?format=csv")
 
@@ -51,7 +52,7 @@
   "Writes the output to the data.cljs file"
   [entries]
   (spit
-   "./gigrig/src/gigrig/data.cljs"
+   "./src/gigrig/data.cljs"
    (with-out-str
      (println "(ns gigrig.data)")
      (println "(defonce data")
