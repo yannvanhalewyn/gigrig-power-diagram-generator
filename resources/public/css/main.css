@@ -55,13 +55,13 @@ h1 {
   color: white;
   cursor: pointer; }
   .suggestion:nth-child(even) {
-    background-color: #935959; }
-    .suggestion:nth-child(even):hover {
-      background-color: #734646; }
-  .suggestion:nth-child(odd) {
     background-color: #55222E; }
+    .suggestion:nth-child(even):hover {
+      background-color: #5d3838; }
+  .suggestion:nth-child(odd) {
+    background-color: #935959; }
     .suggestion:nth-child(odd):hover {
-      background-color: #533333; }
+      background-color: #7d4c4c; }
 
 .suggestion__model {
   float: left;
