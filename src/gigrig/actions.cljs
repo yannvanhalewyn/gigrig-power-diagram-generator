@@ -9,7 +9,7 @@
   {:type :key-pressed
    :value query-value
    :query query-value
-   :suggestions (s/search indexed-data query-value)})
+   :suggestions (vec (s/search indexed-data query-value))})
 
 (defn pedal-selected
   "User has clicked on a pedal from the suggestion drop-down."
@@ -20,8 +20,16 @@
 (defn return-key-pressed
   "User has hit the return key"
   [state]
-  {:type :pedal-selected
-   :pedal (selectors/highlighted-pedal @state)})
+  (if-let [pedal (selectors/highlighted-pedal @state)]
+    {:type :pedal-selected :pedal pedal}))
+
+(defn down-key-pressed [state]
+  {:type :update-highlight-index
+   :idx (inc (selectors/highlighted-idx @state))})
+
+(defn up-key-pressed [state]
+  {:type :update-highlight-index
+   :idx (dec (selectors/highlighted-idx @state))})
 
 (defn pedal-removed
   "User has clicked the clear button next to a selected pedal"
