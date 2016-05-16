@@ -45,7 +45,7 @@
                         :source-paths ["src" "env/min"]
                         :compiler {:main gigrig.main
                                    :optimizations :advanced
-                                   :output-to "resources/public/js/core.js"
+                                   :output-to "out/core.js"
                                    :closure-defines {"goog.DEBUG" false}}}]})
 
 
