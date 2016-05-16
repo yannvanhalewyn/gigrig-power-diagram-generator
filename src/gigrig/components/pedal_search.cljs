@@ -41,5 +41,5 @@
         [search-field {:on-focus #(do (reset! dropdown-visible true) nil)
                        :on-blur #(do (reset! dropdown-visible false) nil)
                        :value (:query props)}]
-        (if true
+        (if @dropdown-visible
           [dropdown (select-keys props [:suggestions :highlighted-pedal])])]])))
