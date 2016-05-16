@@ -25,11 +25,11 @@
 
 (defn down-key-pressed [state]
   {:type :update-highlight-index
-   :idx (inc (selectors/highlighted-idx @state))})
+   :idx (min (- (count (selectors/suggestions @state)) 1) (inc (selectors/highlighted-idx @state)))})
 
 (defn up-key-pressed [state]
   {:type :update-highlight-index
-   :idx (dec (selectors/highlighted-idx @state))})
+   :idx (max 0 (dec (selectors/highlighted-idx @state)))})
 
 (defn suggestion-hovered
   "Mouse has hovered over a suggested pedal"

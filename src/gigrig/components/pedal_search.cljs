@@ -5,9 +5,9 @@
 
 (defn- handle-key-down [event]
   (case (.. event -keyCode)
-    13 (dispatch! a/return-key-pressed)
-    38 (dispatch! a/up-key-pressed)
-    40 (dispatch! a/down-key-pressed)
+    13 (do (.preventDefault event) (dispatch! a/return-key-pressed))
+    38 (do (.preventDefault event) (dispatch! a/up-key-pressed))
+    40 (do (.preventDefault event) (dispatch! a/down-key-pressed))
     nil))
 
 (defn- search-field [{:keys [on-focus on-blur value]}]
