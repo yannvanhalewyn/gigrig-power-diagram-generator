@@ -31,6 +31,12 @@
   {:type :update-highlight-index
    :idx (dec (selectors/highlighted-idx @state))})
 
+(defn suggestion-hovered
+  "Mouse has hovered over a suggested pedal"
+  [state idx]
+  {:type :update-highlight-index
+   :idx idx})
+
 (defn pedal-removed
   "User has clicked the clear button next to a selected pedal"
   [_ id]

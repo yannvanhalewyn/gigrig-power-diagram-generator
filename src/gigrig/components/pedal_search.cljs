@@ -21,14 +21,17 @@
 
 (defn- suggestion [props]
   [:li {:class (if (:highlight props) "suggestion--highlight" "suggestion")
-        :on-mouse-down #(dispatch! a/pedal-selected (:id props))}
+        :on-mouse-down #(dispatch! a/pedal-selected (:id props))
+        :on-mouse-enter #(dispatch! a/suggestion-hovered (:idx props))}
    [:strong.suggestion__model (:model props)]
    [:span.suggestion__brand (:brand props)]])
 
 (defn dropdown [{:keys [suggestions highlighted-pedal]}]
   [:ul.suggestions-dropdown
-   (for [s suggestions]
-     ^{:key (:id s)} [suggestion (merge s {:highlight (= s highlighted-pedal)})])])
+   (map-indexed
+    (fn [i s]
+      ^{:key (:id s)} [suggestion (merge s {:highlight (= s highlighted-pedal) :idx i})])
+    suggestions)])
 
 (defn component []
   (let [dropdown-visible (reagent/atom false)]
