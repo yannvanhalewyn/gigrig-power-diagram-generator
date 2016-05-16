@@ -20,7 +20,7 @@
 (defn- highlighted-idx [state action]
   (case (:type action)
     :init 0
-    :key-pressed 0
+    :key-pressed (:highlight-index action)
     :update-highlight-index (:idx action)
     state))
 
