@@ -103,8 +103,17 @@ h1 {
   cursor: pointer; }
 
 .diagram {
-  margin-top: 40px; }
+  margin-top: 40px;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: middle;
+  overflow: hidden; }
   .diagram svg {
-    width: 100%; }
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0; }
 
 /*# sourceMappingURL=main.css.map */
