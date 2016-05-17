@@ -24,7 +24,7 @@
         :on-mouse-down #(dispatch! a/pedal-selected (:id props))
         :on-mouse-enter #(dispatch! a/suggestion-hovered (:idx props))}
    [:strong.suggestion__model (:model props)]
-   [:span.suggestion__brand (:brand props)]])
+   [:div.suggestion__brand (:brand props)]])
 
 (defn dropdown [{:keys [suggestions highlighted-pedal]}]
   [:ul.suggestions-dropdown
