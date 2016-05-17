@@ -1,6 +1,6 @@
 (ns gigrig.positioning
   (:require [gigrig.powertree :as ptree]
-            [gigrig.geometry.box :as box]
+            [gigrig.geometry.rect :as rect]
             [gigrig.boxed-text-data :as btd]
             [gigrig.constants :refer [ADAPTERS]]
             [clojure.zip :as zip]
@@ -46,11 +46,11 @@
   [loc]
   (max
    ;; The x value of the right wall of the sibling to the left
-   (box/right (-> loc zip/left gzip/box-meta))
+   (rect/right (-> loc zip/left gzip/box-meta))
    ;; The x value of the right wall of the previous sibling's child if adapter
    (when (adapter? (zip/left loc))
-     (+ 7 (box/right (if-let [child (-> loc zip/left zip/down)]
-                       (-> child gzip/box-meta)))))))
+     (+ 7 (rect/right (if-let [child (-> loc zip/left zip/down)]
+                        (-> child gzip/box-meta)))))))
 
 (defn- align
   "Calculates the box data for the given child"

@@ -1,6 +1,10 @@
 *, *:before, *:after {
   box-sizing: border-box; }
 
+button:active,
+button:focus {
+  outline: none; }
+
 body {
   background: #f2f2f2;
   font-family: Verdana;
@@ -19,7 +23,7 @@ h1 {
   margin-bottom: 35px; }
 
 .pedal-search {
-  width: 500px;
+  max-width: 500px;
   position: relative;
   margin: auto auto; }
 
@@ -41,7 +45,7 @@ h1 {
 .suggestions-dropdown {
   position: absolute;
   z-index: 100;
-  width: 500px;
+  width: 100%;
   max-height: 400px;
   overflow: scroll;
   top: 29px;
@@ -49,27 +53,23 @@ h1 {
   box-shadow: 3px 3px 13px black;
   padding: 0; }
 
-.suggestion {
-  padding: 30px 10px;
-  background: #935959;
-  color: white;
+.suggestion, .suggestion--highlight {
+  padding: 10px;
+  color: black;
+  background-color: #efefef;
   cursor: pointer; }
-  .suggestion:nth-child(even) {
-    background-color: #55222E; }
-    .suggestion:nth-child(even):hover {
-      background-color: #5d3838; }
-  .suggestion:nth-child(odd) {
-    background-color: #935959; }
-    .suggestion:nth-child(odd):hover {
-      background-color: #7d4c4c; }
+
+.suggestion--highlight {
+  color: white;
+  background-color: #935959; }
+  .suggestion--highlight .suggestion__brand {
+    color: #fcfcfc; }
 
 .suggestion__model {
-  float: left;
   font-family: Verdana; }
 
 .suggestion__brand {
-  float: right;
-  color: #FCFCFC; }
+  color: #444; }
 
 .selected-pedals {
   min-height: 80px;
@@ -103,8 +103,17 @@ h1 {
   cursor: pointer; }
 
 .diagram {
-  margin-top: 40px; }
+  margin-top: 40px;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: middle;
+  overflow: hidden; }
   .diagram svg {
-    width: 100%; }
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0; }
 
 /*# sourceMappingURL=main.css.map */

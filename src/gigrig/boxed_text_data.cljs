@@ -18,7 +18,7 @@
             :y (+ y padding size)}}))
 
 (defn generator [props]
-  (boxed-text-data (merge props {:text "Generator" :background "#4E4554" :size 13})))
+  (boxed-text-data (merge props {:text "Generator" :background "#4E4554" :size 11})))
 
 (defn distributor [props]
   (boxed-text-data (merge props {:text "Distributor" :background  "#BEA488":size 5})))

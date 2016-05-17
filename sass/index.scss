@@ -6,6 +6,11 @@ $dark-red: #55222E;
   box-sizing: border-box;
 }
 
+button:active,
+button:focus {
+    outline: none;
+}
+
 body {
   background: #f2f2f2;
   font-family: Verdana;
@@ -28,7 +33,7 @@ h1 {
 }
 
 .pedal-search {
-  width: $searchfield-width;
+  max-width: $searchfield-width;
   position: relative;
   margin: auto auto;
 }
@@ -54,7 +59,7 @@ h1 {
 .suggestions-dropdown {
   position: absolute;
   z-index: 100;
-  width: $searchfield-width;
+  width: 100%;
   max-height: 400px;
   overflow: scroll;
   top: 29px;
@@ -64,32 +69,25 @@ h1 {
 }
 
 .suggestion {
-  padding: 30px 10px;
-  background: $light-red;
-  color: white;
+  padding: 10px;
+  color: black;
+  background-color: #efefef;
   cursor: pointer;
-  &:nth-child(even) {
-    background-color: $dark-red;
-    &:hover {
-      background-color: darken($light-red, 17);
-    }
-  }
-  &:nth-child(odd) {
+}
+
+.suggestion--highlight {
+    @extend .suggestion;
+    color: white;
+    .suggestion__brand { color: #fcfcfc; }
     background-color: $light-red;
-    &:hover {
-      background-color: darken($light-red, 7);
-    }
-  }
 }
 
 .suggestion__model {
-  float: left;
   font-family: Verdana;
 }
 
 .suggestion__brand {
-  float: right;
-  color: #FCFCFC;
+  color: #444;
 }
 
 // Selected pedals
@@ -131,6 +129,17 @@ h1 {
 
 // Diagram
 .diagram {
-  margin-top: 40px;
-  svg { width: 100%; }
+    margin-top: 40px;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; 
+    vertical-align: middle; 
+    overflow: hidden;
+    svg {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+    }
 }

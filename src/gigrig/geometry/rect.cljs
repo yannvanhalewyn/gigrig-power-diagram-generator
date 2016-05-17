@@ -1,4 +1,4 @@
-(ns gigrig.geometry.box)
+(ns gigrig.geometry.rect)
 
 (defn center
   "Returns a point representing the center of the given box"

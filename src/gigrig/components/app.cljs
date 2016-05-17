@@ -5,6 +5,7 @@
             [gigrig.components.diagram :as diagram]
             [gigrig.components.selected-pedals :as selected-pedals]
             [gigrig.positioning :as positioning]
+            [gigrig.selectors :as s]
             [gigrig.components.pedal-search :as pedal-search]))
 
 (def build-tree (memoize #(-> % ptree/build positioning/emplace)))
@@ -13,6 +14,8 @@
   [state]
   [:div#app
    [:h1 "Power Supply Diagram generator"]
-   [pedal-search/component (:search-field @state)]
+   [pedal-search/component (s/apply-selectors @state {:query s/query
+                                                      :suggestions s/suggestions
+                                                      :highlighted-pedal s/highlighted-pedal})]
    [selected-pedals/component (:selected-pedals @state)]
    [diagram/component {:zipper (build-tree (:selected-pedals @state))}]])

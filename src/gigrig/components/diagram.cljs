@@ -1,6 +1,7 @@
 (ns gigrig.components.diagram
   (:require [gigrig.boxed-text-data :as btd]
             [gigrig.components.boxes :as boxes]
+            [gigrig.geometry.rect :as rect]
             [gigrig.geometry.line :as line]
             [gigrig.zipper :as gzip]
             [reagent.core :as reagent]
@@ -14,11 +15,10 @@
   (let [highlight (reagent/atom false)]
     (fn [lines]
       [:g {:stroke (if @highlight "gold" "black")
-           :stroke-linecap "round"}
-       (for [l lines] ^{:key (line/react-key l)} [:line (merge
-                                                         {:on-mouse-enter #(reset! highlight true)
-                                                          :on-mouse-leave #(reset! highlight false)}
-                                                         l)])])))
+           :stroke-linecap "round"
+           :on-mouse-enter #(reset! highlight true)
+           :on-mouse-leave #(reset! highlight false)}
+       (for [l lines] ^{:key (line/react-key l)} [:line l])])))
 
 (defn- node
   "Renders the node. If it's a branch, it recursively render a new
@@ -39,16 +39,25 @@
    [boxes/boxed-text (gzip/box-meta root)]
    (seq (gzip/map-siblings node (zip/down root)))])
 
+(defn- max-x
+  "Travels the zipper and finds the rightmost x-position of a node."
+  [zipper]
+  (loop [m 0
+         loc zipper]
+    (if (zip/end? loc)
+      m
+      (recur (max m (rect/right (gzip/box-meta loc)))
+             (zip/next loc)))))
+
 (defn component
   "The main diagram component. Takes in the zipper tree and renders
   the entire power suplly diagram as an svg"
   [{:keys [zipper]}]
-  (let [generator (btd/generator {:x 60 :y 0})]
+  (let [generator (btd/generator {:x 10 :y 0})]
     [:div.diagram
      (when (zip/down zipper)
-       [:svg {:view-box "0 0 200 200"
-              :width "1200"
-              :height "1200"}
-        [boxes/boxed-text generator]
-        [lines (line/connect-trident generator [(gzip/box-meta zipper)])]
-        [tree zipper]])]))
+       (let [size (max 250 (max-x zipper))]
+         [:svg {:view-box (str "0 0 " size " " size)}
+          [boxes/boxed-text generator]
+          [lines (line/connect-trident generator [(gzip/box-meta zipper)])]
+          [tree zipper]]))]))
