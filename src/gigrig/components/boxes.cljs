@@ -2,7 +2,7 @@
 
 (defn boxed-text [{:keys [text x y width height]}]
   [:g
-   [:rect {:x x :y y :width width :height height :fill (:background text)}]
+   [:rect {:x x :y y :width width :height height :rx 1 :ry 1 :fill (:background text)}]
    [:text {:x (:x text) :y (:y text) :font-family "monospace" :font-size (:size text)}
     (:value text)]])
 
