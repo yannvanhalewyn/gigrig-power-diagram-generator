@@ -1,5 +1,6 @@
 (ns scraper.core
-  (:require [clojure.string :as str])
+  (:require [clojure.string :as str]
+            [scraper.data-extension :refer [extra-pedals]])
   (:gen-class))
 
 (def url "https://docs.google.com/spreadsheets/d/1XMCStIcX-UkJF2YYmco7mnoSec8I8Vg_1wSSAVR7L00/export?format=csv")
@@ -59,9 +60,15 @@
      (pr (vec entries))
      (println ")"))))
 
+(defn add-data-extension
+  "Adds extra pedals manually added"
+  [pedals]
+  (concat pedals extra-pedals))
+
 (defn -main []
   (-> (slurp url)
       (str/split #"\n")
       (#(drop 2 %))
       parse-entries
+      add-data-extension
       write-to-file))
