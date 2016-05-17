@@ -14,11 +14,10 @@
   (let [highlight (reagent/atom false)]
     (fn [lines]
       [:g {:stroke (if @highlight "gold" "black")
-           :stroke-linecap "round"}
-       (for [l lines] ^{:key (line/react-key l)} [:line (merge
-                                                         {:on-mouse-enter #(reset! highlight true)
-                                                          :on-mouse-leave #(reset! highlight false)}
-                                                         l)])])))
+           :stroke-linecap "round"
+           :on-mouse-enter #(reset! highlight true)
+           :on-mouse-leave #(reset! highlight false)}
+       (for [l lines] ^{:key (line/react-key l)} [:line l])])))
 
 (defn- node
   "Renders the node. If it's a branch, it recursively render a new
